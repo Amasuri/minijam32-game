@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MiniJam32Game
+namespace BPO.Minijam32
 {
     /// <summary>
     /// The main class.
@@ -11,9 +11,9 @@ namespace MiniJam32Game
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new Minijam32())
                 game.Run();
         }
     }
