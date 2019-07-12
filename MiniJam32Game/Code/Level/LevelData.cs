@@ -1,4 +1,5 @@
 ﻿using BPO.Minijam32.Level.Tile;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +11,7 @@ namespace BPO.Minijam32.Level
 {
     public class LevelData
     {
-        private TileData[,] tileGrid;
+        public TileData[,] tileGrid { get; private set; }
 
         //private List<Enemy>
 
@@ -24,6 +25,11 @@ namespace BPO.Minijam32.Level
             //Bombs go boom
 
             //Enemy go places
+        }
+
+        private void DestroyTileAt(Point tileCoords)
+        {
+            tileGrid[tileCoords.X, tileCoords.Y].Destroy();
         }
 
         private void ReInitializeTileData(int level)
