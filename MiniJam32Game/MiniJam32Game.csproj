@@ -9,7 +9,7 @@
     <ProjectGuid>{2FCA1215-4D7D-462E-8468-08A604B2CA5C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MiniJam32Game</RootNamespace>
+    <RootNamespace>BPO.Minijam32</RootNamespace>
     <AssemblyName>MiniJam32Game</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
@@ -53,6 +53,8 @@
     <Compile Include="Code\Music\AmbientMixer.cs" />
     <Compile Include="Code\Music\MusicPlayer.cs" />
     <Compile Include="Code\Music\SoundPlayer.cs" />
+    <Compile Include="Code\Player\PlayerController.cs" />
+    <Compile Include="Code\Player\PlayerDataManager.cs" />
     <Compile Include="Code\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
