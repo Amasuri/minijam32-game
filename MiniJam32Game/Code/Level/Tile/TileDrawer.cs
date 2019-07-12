@@ -34,7 +34,26 @@ namespace BPO.Minijam32.Level.Tile
                 new Rectangle( typeSourceRect[type].ToPoint(), TileData.TileSize.ToPoint()),
                 Color.White,
                 0.0f,
-                Vector2.Zero, //table of origins for walls?
+                Vector2.Zero,
+                Minijam32.Scale,
+                SpriteEffects.None,
+                0.0f
+            );
+        }
+
+        static public void DrawTileRoofingAt(SpriteBatch batch, TileData.Type type, Point tilePos)
+        {
+            if (!TileData.HasBlockAboveIt(type))
+                return;
+
+            batch.Draw
+            (
+                tileSheet,
+                new Vector2(tilePos.X * TileData.ScaledTileSize.X, (tilePos.Y - 1) * TileData.ScaledTileSize.Y),
+                new Rectangle(typeSourceRect[type].ToPoint() - new Point( 0, (int)TileData.TileSize.Y), TileData.TileSize.ToPoint()),
+                Color.White,
+                0.0f,
+                Vector2.Zero,
                 Minijam32.Scale,
                 SpriteEffects.None,
                 0.0f

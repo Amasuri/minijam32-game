@@ -32,7 +32,11 @@ namespace BPO.Minijam32.Level
 
         public void DrawAbove(Minijam32 game, SpriteBatch batch)
         {
-            //stub for tiles and things above player
+            for (int x = tileGrid.GetLength(0) - 1; x >= 0; x--)
+                for (int y = tileGrid.GetLength(1) - 1; y >= 0; y--)
+                {
+                    TileDrawer.DrawTileRoofingAt(batch, tileGrid[x, y].type, new Point(x, y));
+                }
         }
 
         public void Update(Minijam32 game)

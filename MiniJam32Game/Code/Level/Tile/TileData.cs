@@ -23,22 +23,16 @@ namespace BPO.Minijam32.Level.Tile
             Destroyed,
         }
 
-        /// <summary>
-        /// For tiles like walls that have a bit of a head above it.
-        /// Which is drawn in another cycle above player.
-        /// </summary>
-        public readonly bool IsTwoBlocks;
         public readonly Type type;
         public State state { get; private set; }
 
         static public Vector2 TileSize => new Vector2(16, 16);
         static public Vector2 ScaledTileSize => TileSize * Minijam32.Scale;
 
-        public TileData(Type type, State state = State.Destroyed, bool IsTwoBlocks = false)
+        public TileData(Type type, State state = State.Destroyed)
         {
             this.type = type;
             this.state = state;
-            this.IsTwoBlocks = IsTwoBlocks;
         }
 
         public void Destroy()
@@ -46,10 +40,23 @@ namespace BPO.Minijam32.Level.Tile
             this.state = State.Destroyed;
         }
 
+        /// <summary>
+        /// Can player pass through this block type?
+        /// </summary>
         public static bool IsSolid(Type type)
         {
             return
                 type == Type.FloorWaterStillSimple ||
+                type == Type.WallBricksContourFinished;
+        }
+
+        /// <summary>
+        /// For tiles like walls that have a bit of a head above it.
+        /// Which is drawn in another cycle above player.
+        /// </summary>
+        public static bool HasBlockAboveIt(Type type)
+        {
+            return
                 type == Type.WallBricksContourFinished;
         }
     }
