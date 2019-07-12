@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BPO.Minijam32;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Amasuri.Reusable.Graphics
@@ -9,8 +10,8 @@ namespace Amasuri.Reusable.Graphics
     /// </summary>
     public interface IDrawArranger
     {
-        void CallDraws(Game game, SpriteBatch defaultSpriteBatch, GraphicsDevice graphicsDevice);
+        void CallDraws(Minijam32 game, SpriteBatch defaultSpriteBatch, GraphicsDevice graphicsDevice);
 
-        void CallGuiControlUpdates(Game game);
+        void CallGuiControlUpdates(Minijam32 game);
     }
 }

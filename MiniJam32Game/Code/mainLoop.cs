@@ -1,5 +1,6 @@
 ﻿using Amasuri.Reusable.Graphics;
 using BPO.Minijam32.Level;
+using BPO.Minijam32.Level.Tile;
 using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -51,6 +52,8 @@ namespace BPO.Minijam32
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            TileDrawer.InitAssets(this);
 
             screenPool = new ScreenPool(this);
         }

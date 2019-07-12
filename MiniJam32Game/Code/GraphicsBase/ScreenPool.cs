@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BPO.Minijam32;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -17,7 +18,7 @@ namespace Amasuri.Reusable.Graphics
         private KeyboardState _key;
         private KeyboardState _oldKey;
 
-        public ScreenPool(Game game)
+        public ScreenPool(Minijam32 game)
         {
             this.screenState = ScreenState.Playing;
         }
@@ -25,25 +26,26 @@ namespace Amasuri.Reusable.Graphics
         /// <summary>
         /// Main draw cycle. Calls other drawers.
         /// </summary>
-        public void CallDraws(Game shaderDemo, SpriteBatch defaultSpriteBatch, GraphicsDevice graphicsDevice)
+        public void CallDraws(Minijam32 game, SpriteBatch batch, GraphicsDevice graphicsDevice)
         {
             graphicsDevice.Clear(Color.SlateGray);
-            defaultSpriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            batch.Begin(samplerState: SamplerState.PointClamp);
 
             if (screenState == ScreenState.Start)
             {
             }
             else if (screenState == ScreenState.Playing)
             {
+                game.levelData.Draw(game, batch);
             }
             else if (screenState == ScreenState.EndGame)
             {
             }
 
-            defaultSpriteBatch.End();
+            batch.End();
         }
 
-        public void CallGuiControlUpdates(Game game)
+        public void CallGuiControlUpdates(Minijam32 game)
         {
             this._key = Keyboard.GetState();
             this._mouse = Mouse.GetState();

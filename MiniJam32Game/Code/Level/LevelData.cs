@@ -1,5 +1,6 @@
 ﻿using BPO.Minijam32.Level.Tile;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,15 @@ namespace BPO.Minijam32.Level
         public LevelData(Minijam32 game)
         {
             this.ReInitializeTileData(level: 1);
+        }
+
+        public void Draw(Minijam32 game, SpriteBatch batch)
+        {
+            for (int x = tileGrid.GetLength(0) - 1; x >= 0; x--)
+                for (int y = tileGrid.GetLength(1) - 1; y >= 0; y--)
+                {
+                    TileDrawer.DrawTileAt(batch, tileGrid[x, y].type, new Point(x, y));
+                }
         }
 
         public void Update(Minijam32 game)

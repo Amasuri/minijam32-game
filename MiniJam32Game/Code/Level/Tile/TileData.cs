@@ -10,14 +10,14 @@ namespace BPO.Minijam32.Level.Tile
 {
     public class TileData
     {
-        public Vector2 TileSize => new Vector2(15, 15);
-        public Vector2 ScaledTileSize => TileSize * Minijam32.Scale;
+        static public Vector2 TileSize => new Vector2(16, 16);
+        static public Vector2 ScaledTileSize => TileSize * Minijam32.Scale;
 
         public enum Type
         {
-            FloorDirt,
-            FloorWater,
-            WallDirt,
+            FloorDirtMediumPlain, //I suppose it would be better to break them down & rewrite IDs into zones
+            FloorWaterStillSimple, //Like, zone 70-80 is for water
+            WallBricksContourFinished, //That would make checking really easy, because water is not (insert "&& that tile" x10), but "(int)id > 69 && (int)id <81"
         }
 
         public enum State

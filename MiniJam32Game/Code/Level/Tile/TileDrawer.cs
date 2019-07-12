@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +10,35 @@ namespace BPO.Minijam32.Level.Tile
 {
     static public class TileDrawer
     {
-        //I am a stub that inits a huge thing and is called to draw shit
-        //Coordinates are initialized on that huge things, sadly, by your own hands
-        //So you go like 30+ source rectangles
+        static private Texture2D tileSheet;
+        static private Dictionary<TileData.Type, Vector2> typeSourceRect;
+
+        static public void InitAssets(Minijam32 game)
+        {
+            tileSheet = game.Content.Load<Texture2D>("res/tile/general");
+
+            typeSourceRect = new Dictionary<TileData.Type, Vector2>
+            {
+                { TileData.Type.FloorDirtMediumPlain, new Vector2(TileData.TileSize.X * 1, TileData.TileSize.Y * 0) },
+                { TileData.Type.FloorWaterStillSimple, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 4) },
+                { TileData.Type.WallBricksContourFinished, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 3) },
+            };
+        }
+
+        static public void DrawTileAt(SpriteBatch batch, TileData.Type type, Point tilePos)
+        {
+            batch.Draw
+            (
+                tileSheet,
+                new Vector2(tilePos.X * TileData.ScaledTileSize.X, tilePos.Y * TileData.ScaledTileSize.Y),
+                new Rectangle( typeSourceRect[type].ToPoint(), TileData.TileSize.ToPoint()),
+                Color.White,
+                0.0f,
+                Vector2.Zero, //table of origins for walls?
+                Minijam32.Scale,
+                SpriteEffects.None,
+                0.0f
+            );
+        }
     }
 }
