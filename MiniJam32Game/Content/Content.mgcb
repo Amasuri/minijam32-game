@@ -13,7 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin ../../res/image/mob/player_idle.png
+#begin ../../res/image/mob/hero.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -23,9 +23,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../res/image/mob/player_idle.png;res/mob/player_idle.png
+/build:../../res/image/mob/hero.png;res/mob/hero.png
 
-#begin ../../res/image/tile/floor_dirt1.png
+#begin ../../res/image/tile/general.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -35,29 +35,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:../../res/image/tile/floor_dirt1.png;res/tile/floor_dirt1.png
-
-#begin ../../res/image/tile/floor_water1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../res/image/tile/floor_water1.png;res/tile/floor_water1.png
-
-#begin ../../res/image/tile/wall_dirt1.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../res/image/tile/wall_dirt1.png;res/tile/wall_dirt1.png
+/build:../../res/image/tile/general.png;res/tile/general.png
 
