@@ -23,13 +23,13 @@ namespace BPO.Minijam32.Player
             keyState = Keyboard.GetState();
 
             if (oneKeyPress(keyUp))
-                PlayerDataManager.Move(new Point(0, -1));
+                PlayerDataManager.Move(game.levelData, new Point(0, -1));
             else if (oneKeyPress(keyDown))
-                PlayerDataManager.Move(new Point(0, +1));
+                PlayerDataManager.Move(game.levelData, new Point(0, +1));
             else if (oneKeyPress(keyLeft))
-                PlayerDataManager.Move(new Point(-1, 0));
+                PlayerDataManager.Move(game.levelData, new Point(-1, 0));
             else if (oneKeyPress(keyRight))
-                PlayerDataManager.Move(new Point(1, 0));
+                PlayerDataManager.Move(game.levelData, new Point(1, 0));
 
             oldKeyState = keyState;
         }

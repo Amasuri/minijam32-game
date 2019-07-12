@@ -45,5 +45,12 @@ namespace BPO.Minijam32.Level.Tile
         {
             this.state = State.Destroyed;
         }
+
+        public static bool IsSolid(Type type)
+        {
+            return
+                type == Type.FloorWaterStillSimple ||
+                type == Type.WallBricksContourFinished;
+        }
     }
 }

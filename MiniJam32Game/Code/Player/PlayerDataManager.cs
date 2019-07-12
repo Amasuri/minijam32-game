@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BPO.Minijam32.Level;
+using BPO.Minijam32.Level.Tile;
+using Microsoft.Xna.Framework;
 
 namespace BPO.Minijam32.Player
 {
@@ -18,10 +20,13 @@ namespace BPO.Minijam32.Player
         /// <summary>
         /// Is internal because only PlayerController can do this.
         /// </summary>
-        static internal void Move(Point move)
+        static internal void Move(LevelData level, Point move)
         {
             tilePosition += move;
             lastMove = move;
+
+            if (TileData.IsSolid(level.tileGrid[tilePosition.X, tilePosition.Y].type))
+                tilePosition -= move;
         }
     }
 }
