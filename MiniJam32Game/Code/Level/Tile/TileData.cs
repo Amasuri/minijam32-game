@@ -29,7 +29,7 @@ namespace BPO.Minijam32.Level.Tile
         public readonly Type type;
         public State state { get; private set; }
 
-        public TileData(Type type, State state)
+        public TileData(Type type, State state = State.Destroyed)
         {
             this.type = type;
             this.state = state;
