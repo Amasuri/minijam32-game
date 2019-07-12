@@ -30,8 +30,8 @@ namespace BPO.Minijam32
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            UnscaledWidth = 256;
-            UnscaledHeight = 160;
+            UnscaledWidth = 342;
+            UnscaledHeight = 214;
             Scale = 3;
 
             graphics.PreferredBackBufferWidth = (int)(UnscaledWidth * Scale);
