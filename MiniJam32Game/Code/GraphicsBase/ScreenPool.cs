@@ -37,8 +37,9 @@ namespace Amasuri.Reusable.Graphics
             }
             else if (screenState == ScreenState.Playing)
             {
-                game.levelData.Draw(game, batch);
+                game.levelData.DrawBelow(game, batch);
                 PlayerDrawer.DrawCurrentState(batch, PlayerDataManager.tilePosition);
+                game.levelData.DrawAbove(game, batch);
             }
             else if (screenState == ScreenState.EndGame)
             {

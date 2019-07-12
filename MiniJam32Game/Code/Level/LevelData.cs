@@ -21,13 +21,18 @@ namespace BPO.Minijam32.Level
             this.ReInitializeTileData(level: 1);
         }
 
-        public void Draw(Minijam32 game, SpriteBatch batch)
+        public void DrawBelow(Minijam32 game, SpriteBatch batch)
         {
             for (int x = tileGrid.GetLength(0) - 1; x >= 0; x--)
                 for (int y = tileGrid.GetLength(1) - 1; y >= 0; y--)
                 {
                     TileDrawer.DrawTileAt(batch, tileGrid[x, y].type, new Point(x, y));
                 }
+        }
+
+        public void DrawAbove(Minijam32 game, SpriteBatch batch)
+        {
+            //stub for tiles and things above player
         }
 
         public void Update(Minijam32 game)
