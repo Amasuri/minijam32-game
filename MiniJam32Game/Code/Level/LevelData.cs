@@ -9,7 +9,7 @@ namespace BPO.Minijam32.Level
 {
     public class LevelData
     {
-        private TileData[][] a;
+        private TileData[][] tileGrid;
 
         //private List<Enemy>
 
