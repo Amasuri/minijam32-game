@@ -8,6 +8,7 @@ namespace BPO.Minijam32.Player
     public static class PlayerDataManager
     {
         static public Point tilePosition { get; private set; }
+        static public Point lastMove { get; private set; }
 
         static public void InitData()
         {
@@ -20,6 +21,7 @@ namespace BPO.Minijam32.Player
         static internal void Move(Point move)
         {
             tilePosition += move;
+            lastMove = move;
         }
     }
 }
