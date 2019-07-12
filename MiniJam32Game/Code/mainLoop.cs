@@ -44,6 +44,7 @@ namespace BPO.Minijam32
         {
             this.Window.Title = "Minijam32 BPO game";
 
+            PlayerDataManager.InitData();
             levelData = new LevelData(this);
 
             base.Initialize();
@@ -54,6 +55,7 @@ namespace BPO.Minijam32
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             TileDrawer.InitAssets(this);
+            PlayerDrawer.InitAssets(this);
 
             screenPool = new ScreenPool(this);
         }

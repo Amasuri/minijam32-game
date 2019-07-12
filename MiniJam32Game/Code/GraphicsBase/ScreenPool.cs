@@ -1,4 +1,5 @@
 ﻿using BPO.Minijam32;
+using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -37,6 +38,7 @@ namespace Amasuri.Reusable.Graphics
             else if (screenState == ScreenState.Playing)
             {
                 game.levelData.Draw(game, batch);
+                PlayerDrawer.DrawCurrentState(batch, PlayerDataManager.tilePosition);
             }
             else if (screenState == ScreenState.EndGame)
             {

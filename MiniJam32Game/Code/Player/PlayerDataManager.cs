@@ -7,7 +7,12 @@ namespace BPO.Minijam32.Player
     /// </summary>
     public static class PlayerDataManager
     {
-        static private Point tilePosition;
+        static public Point tilePosition { get; private set; }
+
+        static public void InitData()
+        {
+            tilePosition = new Point(0, 0);
+        }
 
         /// <summary>
         /// Is internal because only PlayerController can do this.
