@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace BPO.Minijam32.Player
@@ -23,7 +18,7 @@ namespace BPO.Minijam32.Player
         private static KeyboardState keyState;
         private static KeyboardState oldKeyState;
 
-        static public void Update(Minijam32 game)
+        static public void UpdateMovement(Minijam32 game)
         {
             keyState = Keyboard.GetState();
 

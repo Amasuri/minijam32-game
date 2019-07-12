@@ -1,4 +1,6 @@
 ﻿using Amasuri.Reusable.Graphics;
+using BPO.Minijam32.Level;
+using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,6 +23,8 @@ namespace BPO.Minijam32
 
         public ScreenPool screenPool;
 
+        public LevelData levelData;
+
         public Minijam32()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -38,6 +42,8 @@ namespace BPO.Minijam32
         protected override void Initialize()
         {
             this.Window.Title = "Minijam32 BPO game";
+
+            levelData = new LevelData(this);
 
             base.Initialize();
         }
@@ -57,6 +63,14 @@ namespace BPO.Minijam32
         {
             DeltaUpdate = gameTime.ElapsedGameTime.Milliseconds;
 
+            this.screenPool.CallGuiControlUpdates(this);
+
+            if (this.screenPool.screenState == ScreenPool.ScreenState.Playing)
+            {
+                PlayerController.UpdateMovement(this);
+                this.levelData.Update(this);
+            }
+
             base.Update(gameTime);
         }
 
@@ -65,6 +79,8 @@ namespace BPO.Minijam32
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             DeltaDraw = gameTime.ElapsedGameTime.Milliseconds;
+
+            this.screenPool.CallDraws(this, spriteBatch, this.GraphicsDevice);
 
             base.Draw(gameTime);
         }

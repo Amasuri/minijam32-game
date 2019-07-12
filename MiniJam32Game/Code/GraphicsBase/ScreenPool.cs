@@ -9,8 +9,8 @@ namespace Amasuri.Reusable.Graphics
     /// </summary>
     public class ScreenPool : IDrawArranger
     {
-        private enum ScreenState { Start, Default, EndGame }
-        private ScreenState screenState;
+        public enum ScreenState { Start, Playing, EndGame }
+        public ScreenState screenState { get; private set; }
 
         private MouseState _mouse;
         private MouseState _oldMouse;
@@ -19,7 +19,7 @@ namespace Amasuri.Reusable.Graphics
 
         public ScreenPool(Game game)
         {
-            this.screenState = ScreenState.Start;
+            this.screenState = ScreenState.Playing;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Amasuri.Reusable.Graphics
             if (screenState == ScreenState.Start)
             {
             }
-            else if (screenState == ScreenState.Default)
+            else if (screenState == ScreenState.Playing)
             {
             }
             else if (screenState == ScreenState.EndGame)
@@ -52,7 +52,7 @@ namespace Amasuri.Reusable.Graphics
             if (screenState == ScreenState.Start)
             {
             }
-            else if (screenState == ScreenState.Default)
+            else if (screenState == ScreenState.Playing)
             {
             }
             else if (screenState == ScreenState.EndGame)

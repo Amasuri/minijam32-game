@@ -42,19 +42,23 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Code\Amasuri.Reusable\Audio\VoicePlayer.cs" />
-    <Compile Include="Code\Amasuri.Reusable\Graphics\ADrawingClass.cs" />
-    <Compile Include="Code\Amasuri.Reusable\Graphics\Animation.cs" />
-    <Compile Include="Code\Amasuri.Reusable\Graphics\IDrawArranger.cs" />
-    <Compile Include="Code\Amasuri.Reusable\Graphics\Pixel.cs" />
-    <Compile Include="Code\Amasuri.Reusable\Text\TextUtils.cs" />
-    <Compile Include="Code\Graphics\ScreenPool.cs" />
+    <Compile Include="Code\Level\LevelData.cs" />
+    <Compile Include="Code\Music\VoicePlayer.cs" />
+    <Compile Include="Code\GraphicsBase\ADrawingClass.cs" />
+    <Compile Include="Code\GraphicsBase\Types\Animation.cs" />
+    <Compile Include="Code\GraphicsBase\IDrawArranger.cs" />
+    <Compile Include="Code\GraphicsBase\Types\Pixel.cs" />
+    <Compile Include="Code\Utils\Text\TextUtils.cs" />
+    <Compile Include="Code\GraphicsBase\ScreenPool.cs" />
+    <Compile Include="Code\Level\Tile\TileData.cs" />
+    <Compile Include="Code\Level\Tile\TileDrawer.cs" />
     <Compile Include="Code\mainLoop.cs" />
     <Compile Include="Code\Music\AmbientMixer.cs" />
     <Compile Include="Code\Music\MusicPlayer.cs" />
     <Compile Include="Code\Music\SoundPlayer.cs" />
     <Compile Include="Code\Player\PlayerController.cs" />
     <Compile Include="Code\Player\PlayerDataManager.cs" />
+    <Compile Include="Code\Player\PlayerDrawer.cs" />
     <Compile Include="Code\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
