@@ -12,9 +12,12 @@ namespace BPO.Minijam32
         public static float DeltaUpdate { get; private set; }
         public static float DeltaDraw { get; private set; }
 
-        static public float Scale { get; private set; }
+        static public int Scale { get; private set; }
         static public int UnscaledWidth { get; private set; }
         static public int UnscaledHeight { get; private set; }
+
+        static public int ScaledWidth => UnscaledWidth * Scale;
+        static public int ScaledHeight => UnscaledHeight * Scale;
 
         public ScreenPool screenPool;
 
@@ -23,8 +26,8 @@ namespace BPO.Minijam32
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            UnscaledWidth = 128;
-            UnscaledHeight = 64;
+            UnscaledWidth = 256;
+            UnscaledHeight = 200;
             Scale = 4;
 
             graphics.PreferredBackBufferWidth = (int)(UnscaledWidth * Scale);
