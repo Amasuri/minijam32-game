@@ -74,21 +74,41 @@ namespace BPO.Minijam32.Level
                 {
                     bombsDeleteLocations.Add(location);
 
-                    //TODO: boooooom
+                    //TODO: boooooom tiles
                 }
             }
+
+            //Enemy go places
+            var enemyDeadList = new List<Enemy> { };
+            foreach (var enemy in enemies)
+            {
+                //Update AI
+                enemy.Update(game);
+
+                //Check if enemy is at any exploding bombs
+                foreach (var location in bombsDeleteLocations)
+                {
+                    if ((enemy.currentPos - location).ToVector2().Length() < 2)
+                        enemy.Damage();
+                }
+
+                //If enemy is dead, mark it
+                if (enemy.isDead)
+                    enemyDeadList.Add(enemy);
+
+                //Check if enemy is touching the hero
+                if (enemy.currentPos == PlayerDataManager.tilePosition)
+                    PlayerDataManager.Die();
+            }
+
+            //After we've done the job, let's remove the old shit
             foreach (var location in bombsDeleteLocations)
             {
                 this.plantedBombs.Remove(location);
             }
-
-            //Enemy go places
-            foreach (var enemy in enemies)
+            foreach (var enemy in enemyDeadList)
             {
-                enemy.Update(game);
-
-                if (enemy.currentPos == PlayerDataManager.tilePosition)
-                    PlayerDataManager.Die();
+                this.enemies.Remove(enemy);
             }
         }
 

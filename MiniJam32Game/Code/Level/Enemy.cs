@@ -45,7 +45,7 @@ namespace BPO.Minijam32.Level
         public Enemy(Type type, Point startingPos)
         {
             this.type = type;
-            this.currentHp = 1;
+            this.currentHp = 2;
             this.currentPos = startingPos;
             this.currentWaitTime = defaultWaitTime;
         }
@@ -112,6 +112,11 @@ namespace BPO.Minijam32.Level
             int move = Minijam32.Rand.Next(3) - 1;
 
             return xOrY == true ? new Point(move, 0) : new Point(0, move);
+        }
+
+        public void Damage()
+        {
+            this.currentHp -= 1;
         }
     }
 }
