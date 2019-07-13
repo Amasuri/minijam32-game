@@ -37,8 +37,8 @@ namespace BPO.Minijam32.Player
             else if (oneKeyPress(keyRight))
                 PlayerDataManager.Move(game.levelData, new Point(1, 0));
 
-            if (oneKeyPress(keyBomb))
-                game.levelData.PlantBombAt(PlayerDataManager.tilePosition);
+            if (keyState.IsKeyDown( keyBomb ))
+                game.levelData.TryPlantBombAt(PlayerDataManager.tilePosition);
 
             oldKeyState = keyState;
         }

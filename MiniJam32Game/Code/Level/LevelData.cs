@@ -128,9 +128,10 @@ namespace BPO.Minijam32.Level
             this.plantedBombs = new Dictionary<Point, float> { };
         }
 
-        public void PlantBombAt(Point tilePosition)
+        public void TryPlantBombAt(Point tilePosition)
         {
-            this.plantedBombs.Add(tilePosition, 3000f);
+            if(!this.plantedBombs.ContainsKey(tilePosition))
+                this.plantedBombs.Add(tilePosition, 3000f);
         }
     }
 }
