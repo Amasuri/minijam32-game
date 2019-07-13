@@ -25,10 +25,14 @@ namespace Amasuri.Reusable.Graphics
         private readonly Texture2D img;
 
         //TODO:
-        public Animation(Game game, string path, int frameLimiterInPixels, float imgScale = 1.0f, int msBetweenFrames = 80, int x=0, int y=0)
+        public Animation(Game game, string path, int frameLimiterInPixels, float imgScale = 1.0f, int msBetweenFrames = 80, int x=0, int y=0, Texture2D sheet = null)
         {
             this.staticPos = new Vector2(x, y);
-            this.img = game.Content.Load<Texture2D>(path);
+
+            if (sheet == null)
+                this.img = game.Content.Load<Texture2D>(path);
+            else
+                this.img = sheet;
 
             this.changeFrameMs = msBetweenFrames;
             this.frameLimInPixels = frameLimiterInPixels;

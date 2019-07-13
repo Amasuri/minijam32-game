@@ -1,4 +1,5 @@
 ﻿using Amasuri.Reusable.Graphics;
+using BPO.Minijam32.GraphicsBase;
 using BPO.Minijam32.Level;
 using BPO.Minijam32.Level.Tile;
 using BPO.Minijam32.Music;
@@ -69,6 +70,8 @@ namespace BPO.Minijam32
 
             this.musicPlayer = new MusicPlayer(this);
             SoundPlayer.InitAssets(this);
+
+            Animator.InitAssets(this);
         }
 
         protected override void UnloadContent()

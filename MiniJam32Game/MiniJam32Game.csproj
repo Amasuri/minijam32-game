@@ -42,6 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Code\GraphicsBase\Animator.cs" />
     <Compile Include="Code\Level\Enemy.cs" />
     <Compile Include="Code\Level\LevelData.cs" />
     <Compile Include="Code\Music\VoicePlayer.cs" />
