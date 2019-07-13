@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Code\GraphicsBase\Animator.cs" />
+    <Compile Include="Code\GUI\Level\InfoDrawer.cs" />
     <Compile Include="Code\Level\Enemy.cs" />
     <Compile Include="Code\Level\LevelData.cs" />
     <Compile Include="Code\Music\VoicePlayer.cs" />
