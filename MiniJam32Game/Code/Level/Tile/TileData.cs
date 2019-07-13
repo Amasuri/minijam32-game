@@ -26,6 +26,8 @@ namespace BPO.Minijam32.Level.Tile
 
             //19-29: Water IDs
             FloorWaterStillSimple = 19,
+
+            //29+: etc... name them whatever, you can rename the current ones with F2 if you think it fits better, too
         }
 
         public enum State
@@ -57,8 +59,16 @@ namespace BPO.Minijam32.Level.Tile
         public static bool IsSolid(Type type)
         {
             return
-                type == Type.FloorWaterStillSimple ||
                 type == Type.WallBricksContourFinished;
+        }
+
+        /// <summary>
+        /// Is this water?
+        /// </summary>
+        public static bool IsWater(Type type)
+        {
+            return
+                type == Type.FloorWaterStillSimple;
         }
 
         /// <summary>
