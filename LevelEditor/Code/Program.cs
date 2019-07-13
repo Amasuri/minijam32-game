@@ -13,7 +13,7 @@ namespace BPO.Minijam32.LevelEditor
         [STAThread]
         private static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new LevelEditor())
                 game.Run();
         }
     }
