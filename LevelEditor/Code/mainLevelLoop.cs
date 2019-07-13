@@ -58,8 +58,13 @@ namespace BPO.Minijam32.LevelEditor
             currentTile = new Point((int)(mouse.Position.X / TileData.ScaledTileSize.X), (int)(mouse.Position.Y / TileData.ScaledTileSize.Y));
 
             //Setting new tile on press
-            if (mouse.LeftButton == ButtonState.Pressed && newTileGrid[currentTile.X, currentTile.Y].type != tileInHand)
-                newTileGrid[currentTile.X, currentTile.Y] = new TileData(tileInHand);
+            if (mouse.LeftButton == ButtonState.Pressed)
+            {
+                if(newTileGrid[currentTile.X, currentTile.Y] == null)
+                    newTileGrid[currentTile.X, currentTile.Y] = new TileData(tileInHand);
+                else if (newTileGrid[currentTile.X, currentTile.Y].type != tileInHand)
+                    newTileGrid[currentTile.X, currentTile.Y] = new TileData(tileInHand);
+            }
 
             //Switching tiles in hand
             if (mouse.ScrollWheelValue > oldMouse.ScrollWheelValue)
@@ -103,14 +108,16 @@ namespace BPO.Minijam32.LevelEditor
             for (int x = newTileGrid.GetLength(0) - 1; x >= 0; x--)
                 for (int y = newTileGrid.GetLength(1) - 1; y >= 0; y--)
                 {
-                    TileDrawer.DrawTileAt(spriteBatch, newTileGrid[x, y].type, new Point(x, y));
+                    if(newTileGrid[x, y] != null)
+                        TileDrawer.DrawTileAt(spriteBatch, newTileGrid[x, y].type, new Point(x, y));
                 }
 
             //Drawuptiles
             for (int x = newTileGrid.GetLength(0) - 1; x >= 0; x--)
                 for (int y = newTileGrid.GetLength(1) - 1; y >= 0; y--)
                 {
-                    TileDrawer.DrawTileRoofingAt(spriteBatch, newTileGrid[x, y].type, new Point(x, y));
+                    if (newTileGrid[x, y] != null)
+                        TileDrawer.DrawTileRoofingAt(spriteBatch, newTileGrid[x, y].type, new Point(x, y));
                 }
         }
 
@@ -123,6 +130,8 @@ namespace BPO.Minijam32.LevelEditor
                 string appendix = "";
                 for (int x = 0; x < newTileGrid.GetLength(0); x++)
                 {
+                    if (newTileGrid[x, y] == null)
+                        newTileGrid[x, y] = new TileData(TileData.Type.FloorDirtMediumPlain);
                     appendix += (char)( (int)newTileGrid[x, y].type + (int)'@');
                 }
                 file[y] = appendix;
@@ -133,10 +142,10 @@ namespace BPO.Minijam32.LevelEditor
 
         private void CopyFromOriginalLevelData()
         {
-            this.newTileGrid = new TileData[this.levelData.tileGrid.GetLength(0), this.levelData.tileGrid.GetLength(1)];
+            this.newTileGrid = new TileData[(int)(UnscaledWidth / TileData.TileSize.X) + 1, (int)(UnscaledHeight / TileData.TileSize.Y) + 1];
 
-            for (int x = newTileGrid.GetLength(0) - 1; x >= 0; x--)
-                for (int y = newTileGrid.GetLength(1) - 1; y >= 0; y--)
+            for (int x = 0; x < this.levelData.tileGrid.GetLength(0); x++)
+                for (int y = 0; y < this.levelData.tileGrid.GetLength(1); y++)
                 {
                     newTileGrid[x, y] = new TileData(this.levelData.tileGrid[x, y].type);
                 }
