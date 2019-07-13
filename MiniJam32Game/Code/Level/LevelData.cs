@@ -91,6 +91,11 @@ namespace BPO.Minijam32.Level
                     Animator.NewBombAnimation(location - new Point(1, 1));
 
                     //TODO: boooooom tiles
+                    this.tileGrid[location.X, location.Y].Destroy();
+                    this.tileGrid[location.X-1, location.Y].Destroy();
+                    this.tileGrid[location.X+1, location.Y].Destroy();
+                    this.tileGrid[location.X, location.Y-1].Destroy();
+                    this.tileGrid[location.X, location.Y+1].Destroy();
                 }
             }
 

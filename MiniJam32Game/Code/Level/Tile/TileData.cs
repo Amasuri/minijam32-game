@@ -41,7 +41,6 @@ namespace BPO.Minijam32.Level.Tile
             WallBricksTopHighCornerLeft = 17,
             WallBricksTopHighCornerRight = 18,
 
-
             //19-29: Water IDs
             FloorWaterStillSimple = 19,
             FloorWaterEdgeWallNarrow = 20,
@@ -54,7 +53,6 @@ namespace BPO.Minijam32.Level.Tile
             FloorWaterEdgeCornerNarrow = 27,
             FloorWaterEdgeCornerLeft = 28,
             FloorWaterEdgeCornerRight = 29,
-
 
             //30-37: Rocks
             RockBasic = 30,
@@ -97,30 +95,22 @@ namespace BPO.Minijam32.Level.Tile
 
             //57: Ice ice baby
             Ice = 57
-
         }
 
-        public enum State
-        {
-            Normal,
-            Destroyed,
-        }
-
-        public readonly Type type;
-        public State state { get; private set; }
+        public Type type { get; private set; }
 
         static public Vector2 TileSize => new Vector2(16, 16);
         static public Vector2 ScaledTileSize => TileSize * Minijam32.Scale;
 
-        public TileData(Type type, State state = State.Destroyed)
+        public TileData(Type type)
         {
             this.type = type;
-            this.state = state;
         }
 
         public void Destroy()
         {
-            this.state = State.Destroyed;
+            if(IsDestructable(type))
+                this.type = Type.FloorDirtMediumPlain;
         }
 
         /// <summary>
@@ -129,7 +119,7 @@ namespace BPO.Minijam32.Level.Tile
         public static bool IsSolid(Type type)
         {
             return
-                (int)type >= (int)Type.BombOne && (int)type <= (int)Type.WallBricksTopHighCornerRight;
+                (int)type >= (int)Type.BombOne && (int)type <= (int)Type.WallBricksTopHighCornerRight || IsDestructable(type);
         }
 
         /// <summary>
@@ -156,7 +146,7 @@ namespace BPO.Minijam32.Level.Tile
         /// </summary>
         public static bool IsDestructable(Type type)
         {
-            return 
+            return
                 (int)type >= (int)Type.RockBasic && (int)type <= (int)Type.GoldHard;
         }
     }
