@@ -14,6 +14,7 @@ namespace BPO.Minijam32.Level
     {
         public TileData[,] tileGrid { get; private set; }
         public Point currentPlayerDefaultLocation { get; private set; }
+        public List<Enemy> enemies { get; private set; }
 
         /// <summary>
         /// Bomb location and time left.
@@ -40,6 +41,12 @@ namespace BPO.Minijam32.Level
             foreach (var location in this.plantedBombs.Keys)
             {
                 TileDrawer.DrawTileAt(batch, TileData.Type.FloorWaterStillSimple, location);
+            }
+
+            //Enemies
+            foreach (var enemy in this.enemies)
+            {
+                enemy.DrawAt(batch);
             }
         }
 
@@ -101,6 +108,13 @@ namespace BPO.Minijam32.Level
             file = File.ReadAllLines(String.Format("Code/Level/Layouts/level{0}.extradata", level));
             var plLocData = file[0].Replace("hero pos: ", "").Split( new string[]{ " " }, StringSplitOptions.RemoveEmptyEntries);
             this.currentPlayerDefaultLocation = new Point(Convert.ToInt32( plLocData[0] ), Convert.ToInt32 ( plLocData[1] ));
+
+            //Placeholder enemy data: later be like "enum_int pos_X pos_Y" in additional level file
+            this.enemies = new List<Enemy>
+            {
+                new Enemy(Enemy.Type.SomeMook, new Point(3, 3)),
+                new Enemy(Enemy.Type.SomeOtherMook, new Point(5, 10)),
+            };
 
             //Reset bomb data
             this.plantedBombs = new Dictionary<Point, float> { };

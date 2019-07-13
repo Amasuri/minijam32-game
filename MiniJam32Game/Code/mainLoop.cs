@@ -56,6 +56,7 @@ namespace BPO.Minijam32
 
             TileDrawer.InitAssets(this);
             PlayerDrawer.InitAssets(this);
+            Enemy.LoadAssets(this);
 
             screenPool = new ScreenPool(this);
         }
