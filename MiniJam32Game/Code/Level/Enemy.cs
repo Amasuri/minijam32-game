@@ -87,7 +87,6 @@ namespace BPO.Minijam32.Level
 
         private void Move(Minijam32 game)
         {
-            //There's a potential bug of enemy having to search for pos forever if inside 4 walls, but who's gonna do that anyway and what for
             bool hasGeneratedPos = false;
             int i = 0;
 
