@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Amasuri.Reusable.Graphics;
 using BPO.Minijam32.Level.Tile;
 using Microsoft.Xna.Framework;
@@ -115,7 +116,19 @@ namespace BPO.Minijam32.LevelEditor
 
         private void SaveState()
         {
-            throw new NotImplementedException();
+            string[] file = new string[newTileGrid.GetLength(0)];
+
+            for (int y = 0; y < newTileGrid.GetLength(1); y++)
+            {
+                string appendix = "";
+                for (int x = 0; x < newTileGrid.GetLength(0); x++)
+                {
+                    appendix += (char)( (int)newTileGrid[x, y].type + (int)'@');
+                }
+                file[y] = appendix;
+            }
+
+            File.WriteAllLines("New Data/levelX.leveldata", file);
         }
 
         private void CopyFromOriginalLevelData()
