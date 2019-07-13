@@ -40,7 +40,7 @@ namespace BPO.Minijam32.Player
             tilePosition += move;
             lastMove = move;
 
-            if (TileData.IsSolid(level.tileGrid[tilePosition.X, tilePosition.Y].type))
+            if (TileData.IsSolid(level.tileGrid[tilePosition.X, tilePosition.Y].type) || level.IsBombAtThisPosition(tilePosition))
                 tilePosition -= move;
         }
     }

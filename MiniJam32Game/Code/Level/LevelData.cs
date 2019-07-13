@@ -183,5 +183,13 @@ namespace BPO.Minijam32.Level
             if(!this.plantedBombs.ContainsKey(tilePosition))
                 this.plantedBombs.Add(tilePosition, bombFuseTimerInMs);
         }
+
+        /// <summary>
+        /// Since bombs aren't tiles but entities, they need another kind of collision handling
+        /// </summary>
+        public bool IsBombAtThisPosition(Point location)
+        {
+            return this.plantedBombs.ContainsKey(location);
+        }
     }
 }

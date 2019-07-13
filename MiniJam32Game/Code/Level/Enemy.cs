@@ -89,16 +89,19 @@ namespace BPO.Minijam32.Level
         {
             //There's a potential bug of enemy having to search for pos forever if inside 4 walls, but who's gonna do that anyway and what for
             bool hasGeneratedPos = false;
+            int i = 0;
 
-            while (!hasGeneratedPos)
+            while (!hasGeneratedPos && i < 10)
             {
+                i++;
+
                 Point move = this.GenerateNewDirectionalMove();
                 Point newPos = this.currentPos + move;
 
                 if (newPos.X <= 0 || newPos.Y <= 0 || newPos.X >= game.levelData.tileGrid.GetLength(0) || newPos.Y >= game.levelData.tileGrid.GetLength(1))
                     continue;
 
-                if(!TileData.IsSolid( game.levelData.tileGrid[newPos.X, newPos.Y].type))
+                if(!TileData.IsSolid( game.levelData.tileGrid[newPos.X, newPos.Y].type) && !game.levelData.IsBombAtThisPosition(newPos))
                 {
                     hasGeneratedPos = true;
                     this.currentPos += move;
