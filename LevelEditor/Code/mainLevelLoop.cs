@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Amasuri.Reusable.Graphics;
 using BPO.Minijam32.Level.Tile;
 using Microsoft.Xna.Framework;
@@ -32,7 +33,7 @@ namespace BPO.Minijam32.LevelEditor
             base.Initialize();
 
             this.CopyFromOriginalLevelData();
-            tileInHand = TileData.Type.FloorWaterStillSimple;
+            tileInHand = TileData.Type.FloorDirtMediumPlain;
         }
 
         protected override void LoadContent()
@@ -48,13 +49,22 @@ namespace BPO.Minijam32.LevelEditor
             keys = Keyboard.GetState();
             mouse = Mouse.GetState();
 
+            //Saving
             if (keys.IsKeyDown(Keys.S) && keys.IsKeyDown(Keys.LeftControl) && oldKeys.IsKeyUp(Keys.S))
                 this.SaveState();
 
+            //Getting current tile under the mouse
             currentTile = new Point((int)(mouse.Position.X / TileData.ScaledTileSize.X), (int)(mouse.Position.Y / TileData.ScaledTileSize.Y));
 
+            //Setting new tile on press
             if (mouse.LeftButton == ButtonState.Pressed && newTileGrid[currentTile.X, currentTile.Y].type != tileInHand)
                 newTileGrid[currentTile.X, currentTile.Y] = new TileData(tileInHand);
+
+            //Switching tiles in hand
+            if (mouse.ScrollWheelValue > oldMouse.ScrollWheelValue)
+                JumpToNextAppropriateTile(mouse, oldMouse, jumping: +1);
+            if (mouse.ScrollWheelValue < oldMouse.ScrollWheelValue)
+                JumpToNextAppropriateTile(mouse, oldMouse, jumping: -1);
 
             oldKeys = keys;
             oldMouse = mouse;
@@ -117,6 +127,27 @@ namespace BPO.Minijam32.LevelEditor
                 {
                     newTileGrid[x, y] = new TileData(this.levelData.tileGrid[x, y].type);
                 }
+        }
+
+        private void JumpToNextAppropriateTile(MouseState mouse, MouseState oldMouse, int jumping)
+        {
+            List<TileData.Type> appropTiles = new List<TileData.Type>
+            {
+                TileData.Type.FloorDirtMediumPlain,
+                TileData.Type.FloorWaterStillSimple,
+                TileData.Type.WallBricksContourFinished
+            };
+
+            TileData.Type oldType = this.tileInHand;
+
+            tileInHand += jumping;
+
+            if (jumping > 0 && appropTiles.IndexOf(oldType) + 1 < appropTiles.Count)
+                tileInHand = appropTiles[appropTiles.IndexOf(oldType) + 1];
+            else if (jumping < 0 && appropTiles.IndexOf(oldType) - 1 > -1)
+                tileInHand = appropTiles[appropTiles.IndexOf(oldType) - 1];
+            else
+                tileInHand = oldType;
         }
     }
 }
