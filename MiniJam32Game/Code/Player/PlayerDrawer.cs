@@ -26,6 +26,7 @@ namespace BPO.Minijam32.Player
         static private Texture2D spritesheet;
         static private Dictionary<State, Rectangle> stateSourceRect;
         static private Vector2 heroDrawOffset;
+        static private Vector2 animationDrawOffset => new Vector2(0, -16) * Minijam32.Scale;
 
         static private Animation movingLeft;
         static private Animation movingRight;
@@ -57,11 +58,6 @@ namespace BPO.Minijam32.Player
             currentAnimationMs = 0f;
         }
 
-        internal static void NotifyAboutSuccessfulMoving()
-        {
-            currentAnimationMs = maxAnimationMs;
-        }
-
         static public void DrawCurrentState(SpriteBatch batch, Point tilePos)
         {
             //State is literally draw state, so it makes sense to put & update it right on draw cycles
@@ -83,6 +79,28 @@ namespace BPO.Minijam32.Player
                     0.0f
                 );
             }
+            else
+            {
+                var drawPos = new Vector2(tilePos.X * TileData.ScaledTileSize.X, tilePos.Y * TileData.ScaledTileSize.Y) + animationDrawOffset;
+                switch (currentState)
+                {
+                    case State.FacingDownStill:
+                        movingDown.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos);
+                        break;
+
+                    case State.FacingLeftStill:
+                        movingLeft.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos);
+                        break;
+
+                    case State.FacingRightStill:
+                        movingRight.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos);
+                        break;
+
+                    case State.FacingUpStill:
+                        movingUp.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos);
+                        break;
+                }
+            }
         }
 
         private static void UpdateCurrentState()
@@ -100,6 +118,22 @@ namespace BPO.Minijam32.Player
 
             if (currentAnimationMs > 0f)
                 currentAnimationMs -= Minijam32.DeltaDraw;
+        }
+
+        public static void NotifyAboutSuccessfulMoving()
+        {
+            currentAnimationMs = maxAnimationMs;
+
+            var lastMove = PlayerDataManager.lastMove;
+
+            if (lastMove == new Point(0, -1))
+                movingUp.EnableDrawing(isALoop: true);
+            if (lastMove == new Point(0, +1))
+                movingDown.EnableDrawing(isALoop: true);
+            if (lastMove == new Point(-1, 0))
+                movingLeft.EnableDrawing(isALoop: true);
+            if (lastMove == new Point(+1, 0))
+                movingRight.EnableDrawing(isALoop: true);
         }
     }
 }
