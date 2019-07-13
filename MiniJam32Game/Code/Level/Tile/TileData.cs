@@ -12,9 +12,20 @@ namespace BPO.Minijam32.Level.Tile
     {
         public enum Type
         {
-            FloorDirtMediumPlain, //I suppose it would be better to break them down & rewrite IDs into zones
-            FloorWaterStillSimple, //Like, zone 70-80 is for water
-            WallBricksContourFinished, //That would make checking really easy, because water is not (insert "&& that tile" x10), but "(int)id > 69 && (int)id <81"
+            //I suppose it would be better to break them down & rewrite IDs into zones
+            //Like, zone 70-80 is for water
+            //That would make checking really easy, because water is not (insert "&& that tile" x10 times), but "(int)id > 69 && (int)id <81"
+
+            //0-2: Dirts zone (when in doubt refer to the tile spritesheet)
+            FloorDirtMediumPlain = 1,
+
+            //3-4: Bomb tile zone
+
+            //5-18: Walls zone (roofings IDs are skipped, because are drawn only on demand)
+            WallBricksContourFinished = 5,
+
+            //19-29: Water IDs
+            FloorWaterStillSimple = 19,
         }
 
         public enum State
