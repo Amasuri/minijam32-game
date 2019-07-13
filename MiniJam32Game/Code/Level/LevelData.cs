@@ -13,18 +13,16 @@ namespace BPO.Minijam32.Level
 {
     public class LevelData
     {
+        /// <summary>
+        /// Bomb location and time left.
+        /// </summary>
+        public Dictionary<Point, float> plantedBombs { get; private set; }
         public TileData[,] tileGrid { get; private set; }
         public Point currentPlayerDefaultLocation { get; private set; }
         public List<Enemy> enemies { get; private set; }
 
         private const float bombFuseTimerInMs = 3000f;
-
-        /// <summary>
-        /// Bomb location and time left.
-        /// </summary>
-        public Dictionary<Point, float> plantedBombs;
-
-        //private List<Enemy>
+        private const int maxBombCount = 4;
 
         public LevelData(Minijam32 game)
         {
@@ -152,6 +150,9 @@ namespace BPO.Minijam32.Level
 
         public void TryPlantBombAt(Point tilePosition)
         {
+            if (this.plantedBombs.Count >= maxBombCount)
+                return;
+
             if(!this.plantedBombs.ContainsKey(tilePosition))
                 this.plantedBombs.Add(tilePosition, bombFuseTimerInMs);
         }
