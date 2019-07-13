@@ -90,6 +90,8 @@ namespace BPO.Minijam32.Level
             bool hasGeneratedPos = false;
             int i = 0;
 
+            //Later there will be a check "if 4 sides are blocked then no check"
+
             while (!hasGeneratedPos && i < 10)
             {
                 i++;
