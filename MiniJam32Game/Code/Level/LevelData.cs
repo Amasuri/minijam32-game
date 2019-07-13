@@ -119,12 +119,16 @@ namespace BPO.Minijam32.Level
 
                 //Check if enemy is touching the hero
                 if (enemy.currentPos == PlayerDataManager.tilePosition)
-                    PlayerDataManager.Die();
+                    PlayerDataManager.Damage();
             }
 
             //After we've done the job, let's remove the old shit
             foreach (var location in bombsDeleteLocations)
             {
+                //To save cycles, we're checking for self-harm there for each explosion
+                if ((PlayerDataManager.tilePosition - location).ToVector2().Length() < 2)
+                    PlayerDataManager.Damage();
+
                 this.plantedBombs.Remove(location);
             }
             foreach (var enemy in enemyDeadList)
