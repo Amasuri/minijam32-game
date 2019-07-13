@@ -1,6 +1,7 @@
 ﻿using Amasuri.Reusable.Graphics;
 using BPO.Minijam32.Level;
 using BPO.Minijam32.Level.Tile;
+using BPO.Minijam32.Music;
 using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,6 +25,7 @@ namespace BPO.Minijam32
         static public int ScaledHeight => UnscaledHeight * Scale;
 
         public ScreenPool screenPool;
+        public MusicPlayer musicPlayer;
 
         public LevelData levelData;
 
@@ -64,6 +66,9 @@ namespace BPO.Minijam32
             Enemy.LoadAssets(this);
 
             screenPool = new ScreenPool(this);
+
+            this.musicPlayer = new MusicPlayer(this);
+            SoundPlayer.InitAssets(this);
         }
 
         protected override void UnloadContent()

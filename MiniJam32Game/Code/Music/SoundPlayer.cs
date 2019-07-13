@@ -4,19 +4,29 @@ using System.Collections.Generic;
 
 namespace BPO.Minijam32.Music
 {
-    public class SoundPlayer
+    /// <summary>
+    /// It's <see langword="static"/>, hence callable from anywhere.
+    ///
+    /// In proper games sound events are realized via <see langword="event"/> mechanics, but
+    /// we're jamming here, so let's just easy things up and make it callable from anywhere, on any use. You
+    /// can peek usage with ctrl + k, r anyway.
+    /// </summary>
+    static public class SoundPlayer
     {
         public enum Type
         {
         }
 
-        private Dictionary<Type, SoundEffect> sounds;
+        static private Dictionary<Type, SoundEffect> sounds;
 
-        public SoundPlayer(Game game)
+        static public void InitAssets(Game game)
         {
+            sounds = new Dictionary<Type, SoundEffect>
+            {
+            };
         }
 
-        public void PlaySound(Type type)
+        static public void PlaySound(Type type)
         {
             if (sounds.ContainsKey(type))
                 sounds[type].Play();

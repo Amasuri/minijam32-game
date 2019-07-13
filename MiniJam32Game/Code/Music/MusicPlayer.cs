@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace BPO.Minijam32.Music
 {
+    /// <summary>
+    /// A kind of updater, which takes major screen state changes to change music it's playing.
+    ///
+    /// Is not static because we don't need it to be called from anywhere.
+    /// </summary>
     public class MusicPlayer
     {
         public enum SongType
