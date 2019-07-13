@@ -9,12 +9,22 @@ namespace BPO.Minijam32.Player
     /// </summary>
     public static class PlayerDataManager
     {
+        private const int maxHP = 3;
+        static public int currentHP { get; private set; }
+        static public bool isDead => currentHP <= 0;
+
         static public Point tilePosition { get; private set; }
         static public Point lastMove { get; private set; }
 
         static public void InitData()
         {
             tilePosition = new Point(0, 0);
+            currentHP = maxHP;
+        }
+
+        static public void Damage()
+        {
+            currentHP -= 1;
         }
 
         /// <summary>
