@@ -80,5 +80,13 @@ namespace BPO.Minijam32.Level.Tile
             return
                 type == Type.WallBricksContourFinished;
         }
+
+        /// <summary>
+        /// Can player destruct this tile (stone) with a bomb?
+        /// </summary>
+        public static bool IsDestructable(Type type)
+        {
+            return false;
+        }
     }
 }
