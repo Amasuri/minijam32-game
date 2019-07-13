@@ -27,6 +27,7 @@ namespace BPO.Minijam32.Player
         static private Dictionary<State, Rectangle> stateSourceRect;
         static private Vector2 heroDrawOffset;
         static private Vector2 animationDrawOffset => new Vector2(0, -16) * Minijam32.Scale;
+        static private int frameStep => (int)TileData.ScaledTileSize.X / maxFrames;
 
         static private Animation movingLeft;
         static private Animation movingRight;
@@ -34,7 +35,9 @@ namespace BPO.Minijam32.Player
         static private Animation movingDown;
 
         static private bool isMoving => currentAnimationMs > 0f;
-        private const float maxAnimationMs = 400f;
+        private const int maxFrames = 4;
+        private const float maxAnimationMs = maxFrames * oneFrameTime;
+        private const int oneFrameTime = 100;
         static private float currentAnimationMs;
 
         static public void InitAssets(Minijam32 game)
@@ -50,10 +53,10 @@ namespace BPO.Minijam32.Player
                 { State.FacingRightStill, new Rectangle(0, 110, 16, 18) },
             };
 
-            movingLeft = new Animation(game, "res/mob/hero_left", 16, Minijam32.Scale, 100);
-            movingRight = new Animation(game, "res/mob/hero_right", 16, Minijam32.Scale, 100);
-            movingUp = new Animation(game, "res/mob/hero_up", 16, Minijam32.Scale, 100);
-            movingDown = new Animation(game, "res/mob/hero_down", 16, Minijam32.Scale, 100);
+            movingLeft = new Animation(game, "res/mob/hero_left", 16, Minijam32.Scale, oneFrameTime);
+            movingRight = new Animation(game, "res/mob/hero_right", 16, Minijam32.Scale, oneFrameTime);
+            movingUp = new Animation(game, "res/mob/hero_up", 16, Minijam32.Scale, oneFrameTime);
+            movingDown = new Animation(game, "res/mob/hero_down", 16, Minijam32.Scale, oneFrameTime);
 
             currentAnimationMs = 0f;
         }
@@ -85,19 +88,19 @@ namespace BPO.Minijam32.Player
                 switch (currentState)
                 {
                     case State.FacingDownStill:
-                        movingDown.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos);
+                        movingDown.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(0, maxFrames - frameStep * ((int)currentAnimationMs/(int)oneFrameTime)));
                         break;
 
                     case State.FacingLeftStill:
-                        movingLeft.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos);
+                        movingLeft.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(frameStep * ((int)currentAnimationMs / (int)oneFrameTime), 0));
                         break;
 
                     case State.FacingRightStill:
-                        movingRight.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos);
+                        movingRight.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(maxFrames - frameStep * ((int)currentAnimationMs / (int)oneFrameTime), 0));
                         break;
 
                     case State.FacingUpStill:
-                        movingUp.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos);
+                        movingUp.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(0, frameStep * ((int)currentAnimationMs / (int)oneFrameTime)));
                         break;
                 }
             }
