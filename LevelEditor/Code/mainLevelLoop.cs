@@ -123,7 +123,7 @@ namespace BPO.Minijam32.LevelEditor
 
         private void SaveState()
         {
-            string[] file = new string[newTileGrid.GetLength(0)];
+            string[] file = new string[newTileGrid.GetLength(1)];
 
             for (int y = 0; y < newTileGrid.GetLength(1); y++)
             {
