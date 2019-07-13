@@ -19,9 +19,12 @@ namespace Amasuri.Reusable.Graphics
         private KeyboardState _key;
         private KeyboardState _oldKey;
 
+        private Color backgroundDirtColor;
+
         public ScreenPool(Minijam32 game)
         {
             this.screenState = ScreenState.Playing;
+            this.backgroundDirtColor = new Color(57, 42, 28);
         }
 
         /// <summary>
@@ -29,7 +32,7 @@ namespace Amasuri.Reusable.Graphics
         /// </summary>
         public void CallDraws(Minijam32 game, SpriteBatch batch, GraphicsDevice graphicsDevice)
         {
-            graphicsDevice.Clear(Color.SlateGray);
+            graphicsDevice.Clear(backgroundDirtColor);
             batch.Begin(samplerState: SamplerState.PointClamp);
 
             if (screenState == ScreenState.Start)
