@@ -15,7 +15,7 @@ namespace Amasuri.Reusable.Graphics
         protected int frameLimInPixels;
         protected int changeFrameMs;
         protected int currentFrameInd;
-        protected int currentTimeMs;
+        protected float currentTimeMs;
         protected int maxFrameInd;
         protected bool isDrawn;
         protected Point frameSize;
@@ -50,7 +50,7 @@ namespace Amasuri.Reusable.Graphics
         /// <summary>
         /// Draws current frame of animation, with offset from usual pos by offset.
         /// </summary>
-        public void Draw(SpriteBatch spritebatch, Vector2 offsetFromUsualDrawPos, SpriteEffects effects, int delta, bool doTick = true)
+        public void Draw(SpriteBatch spritebatch, Vector2 offsetFromUsualDrawPos, SpriteEffects effects, float delta, bool doTick = true)
         {
             if (!this.isDrawn)
                 return;
@@ -69,7 +69,7 @@ namespace Amasuri.Reusable.Graphics
         /// <summary>
         /// Draws current frame of animation at pos.
         /// </summary>
-        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, int delta, Vector2 pos, bool doTick = true)
+        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, float delta, Vector2 pos, bool doTick = true)
         {
             if (!this.isDrawn)
                 return;
@@ -88,7 +88,7 @@ namespace Amasuri.Reusable.Graphics
         /// <summary>
         /// Draws animation at default pos.
         /// </summary>
-        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, int delta, bool doTick = true)
+        public void Draw(SpriteBatch spritebatch, SpriteEffects effects, float delta, bool doTick = true)
         {
             if (!this.isDrawn)
                 return;
@@ -109,7 +109,7 @@ namespace Amasuri.Reusable.Graphics
         /// Usually is called inside draw, but can be called separatedly for shared assets
         /// (to not Tick gajillion times for one obj and multiple draws)
         /// </summary>
-        public void Tick(int delta)
+        public void Tick(float delta)
         {
             this.currentTimeMs += delta;
 

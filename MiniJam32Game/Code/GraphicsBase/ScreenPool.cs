@@ -1,4 +1,5 @@
 ﻿using BPO.Minijam32;
+using BPO.Minijam32.GraphicsBase;
 using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -43,6 +44,7 @@ namespace Amasuri.Reusable.Graphics
                 game.levelData.DrawBelow(game, batch);
                 PlayerDrawer.DrawCurrentState(batch, PlayerDataManager.tilePosition);
                 game.levelData.DrawAbove(game, batch);
+                Animator.DrawFiniteFieldAnimations(batch);
             }
             else if (screenState == ScreenState.EndGame)
             {

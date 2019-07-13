@@ -1,4 +1,5 @@
-﻿using BPO.Minijam32.Level.Tile;
+﻿using BPO.Minijam32.GraphicsBase;
+using BPO.Minijam32.Level.Tile;
 using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -71,6 +72,8 @@ namespace BPO.Minijam32.Level
                 if (this.plantedBombs[location] <= 0)
                 {
                     bombsDeleteLocations.Add(location);
+
+                    Animator.NewBombAnimation(location - new Point(1, 1));
 
                     //TODO: boooooom tiles
                 }

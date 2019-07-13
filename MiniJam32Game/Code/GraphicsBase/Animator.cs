@@ -1,4 +1,5 @@
 ﻿using Amasuri.Reusable.Graphics;
+using BPO.Minijam32.Level.Tile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -24,11 +25,23 @@ namespace BPO.Minijam32.GraphicsBase
 
         static public void NewBombAnimation(Point location)
         {
-            finiteFieldAnimations.Add(new Animation(null, "", 16, Minijam32.Scale, 50, sheet: bombSheet));
+            Animation newAnim = new Animation(
+                null, "", 48, Minijam32.Scale, 50,
+                x: (int)(location.X * TileData.ScaledTileSize.X),
+                y: (int)(location.Y * TileData.ScaledTileSize.Y),
+                sheet: bombSheet);
+
+            newAnim.EnableDrawing(isALoop: false);
+
+            finiteFieldAnimations.Add( newAnim );
         }
 
-        static public void DrawFiniteFieldAnimations()
+        static public void DrawFiniteFieldAnimations(SpriteBatch batch)
         {
+            foreach (var animation in finiteFieldAnimations)
+            {
+                animation.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw);
+            }
         }
     }
 }
