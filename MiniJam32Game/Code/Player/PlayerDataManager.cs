@@ -16,9 +16,9 @@ namespace BPO.Minijam32.Player
         static public Point tilePosition { get; private set; }
         static public Point lastMove { get; private set; }
 
-        static public void InitData()
+        static public void InitData(LevelData level)
         {
-            tilePosition = new Point(0, 0);
+            tilePosition = level.currentPlayerDefaultLocation;
             currentHP = maxHP;
         }
 

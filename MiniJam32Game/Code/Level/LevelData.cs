@@ -13,12 +13,13 @@ namespace BPO.Minijam32.Level
     public class LevelData
     {
         public TileData[,] tileGrid { get; private set; }
+        public Point currentPlayerDefaultLocation { get; private set; }
 
         //private List<Enemy>
 
         public LevelData(Minijam32 game)
         {
-            this.ReInitializeTileData(level: 1);
+            this.ReInitializeLevelData(level: 1);
         }
 
         public void DrawBelow(Minijam32 game, SpriteBatch batch)
@@ -51,8 +52,9 @@ namespace BPO.Minijam32.Level
             tileGrid[tileCoords.X, tileCoords.Y].Destroy();
         }
 
-        private void ReInitializeTileData(int level)
+        private void ReInitializeLevelData(int level)
         {
+            //All things tiles related
             var file = File.ReadAllLines(String.Format("Code/Level/Layouts/level{0}.leveldata", level));
 
             int baseCount = (int)'@'; //it's like zero for all the enums, so '@' = 0 = TileData.Type.FloorDirt. For all corellations look up ascii tables starting from '@'
@@ -66,6 +68,11 @@ namespace BPO.Minijam32.Level
                     int correspondingType = symb - baseCount;
                     tileGrid[x, y] = new TileData((TileData.Type) correspondingType);
                 }
+
+            //Extra data like player hp and other things
+            file = File.ReadAllLines(String.Format("Code/Level/Layouts/level{0}.extradata", level));
+            var plLocData = file[0].Replace("hero pos: ", "").Split( new string[]{ " " }, StringSplitOptions.RemoveEmptyEntries);
+            this.currentPlayerDefaultLocation = new Point(Convert.ToInt32( plLocData[0] ), Convert.ToInt32 ( plLocData[1] ));
         }
     }
 }
