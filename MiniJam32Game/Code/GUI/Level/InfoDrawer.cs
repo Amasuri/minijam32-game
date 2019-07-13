@@ -30,6 +30,21 @@ namespace BPO.Minijam32.GUI.Level
 
         static public void Draw(SpriteBatch batch)
         {
+            DrawHpGui(batch);
+            DrawCoinsGui(batch);
+        }
+
+        private static void DrawCoinsGui(SpriteBatch batch)
+        {
+            int coinsLessTens = PlayerDataManager.coins % 10;
+            int coinsTens = PlayerDataManager.coins / 10;
+
+            batch.Draw(numbersSheet, new Vector2(289, 25) * Minijam32.Scale, new Rectangle(6 * coinsLessTens, 0, 6, 8), normalColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+            batch.Draw(numbersSheet, new Vector2(282, 25) * Minijam32.Scale, new Rectangle(6 * coinsTens, 0, 6, 8), normalColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+        }
+
+        private static void DrawHpGui(SpriteBatch batch)
+        {
             batch.Draw(playerHpGui, Vector2.Zero, null, Color.White, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
 
             Color drawColor = normalColor;
@@ -39,7 +54,7 @@ namespace BPO.Minijam32.GUI.Level
             else if (playerHp < 2)
                 drawColor = deathColor;
 
-            batch.Draw(numbersSheet, new Vector2(34, 25) * Minijam32.Scale, new Rectangle(0, 0, 6, 8), drawColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+            batch.Draw(numbersSheet, new Vector2(35, 25) * Minijam32.Scale, new Rectangle(0, 0, 6, 8), drawColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
             batch.Draw(numbersSheet, new Vector2(42, 25) * Minijam32.Scale, new Rectangle(6 * playerHp, 0, 6, 8), drawColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
         }
     }

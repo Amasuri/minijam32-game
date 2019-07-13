@@ -16,6 +16,8 @@ namespace BPO.Minijam32.Player
         static private float currentInvis;
         private const float maxInvis = 1000f;
 
+        static public int coins { get; private set; }
+
         static public Point tilePosition { get; private set; }
         static public Point lastMove { get; private set; }
 
@@ -24,6 +26,7 @@ namespace BPO.Minijam32.Player
             tilePosition = level.currentPlayerDefaultLocation;
             currentHP = maxHP;
             currentInvis = 0f;
+            coins = 00;
         }
 
         static public void Damage()
@@ -33,6 +36,11 @@ namespace BPO.Minijam32.Player
 
             currentHP -= 1;
             currentInvis = maxInvis;
+        }
+
+        static public void GetCoin()
+        {
+            coins++;
         }
 
         static public void Update()
