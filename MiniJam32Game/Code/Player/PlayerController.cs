@@ -24,6 +24,10 @@ namespace BPO.Minijam32.Player
         {
             keyState = Keyboard.GetState();
 
+            //On death, no controls
+            if (PlayerDataManager.isDead)
+                return;
+
             if (oneKeyPress(keyUp))
                 PlayerDataManager.Move(game.levelData, new Point(0, -1));
             else if (oneKeyPress(keyDown))

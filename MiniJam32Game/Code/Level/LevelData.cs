@@ -1,4 +1,5 @@
 ﻿using BPO.Minijam32.Level.Tile;
+using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -83,6 +84,9 @@ namespace BPO.Minijam32.Level
             foreach (var enemy in enemies)
             {
                 enemy.Update(game);
+
+                if (enemy.currentPos == PlayerDataManager.tilePosition)
+                    PlayerDataManager.Die();
             }
         }
 

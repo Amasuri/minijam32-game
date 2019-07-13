@@ -27,6 +27,11 @@ namespace BPO.Minijam32.Player
             currentHP -= 1;
         }
 
+        static public void Die()
+        {
+            currentHP = 0;
+        }
+
         /// <summary>
         /// Is internal because only PlayerController can do this.
         /// </summary>
