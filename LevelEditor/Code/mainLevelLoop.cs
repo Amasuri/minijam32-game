@@ -153,21 +153,12 @@ namespace BPO.Minijam32.LevelEditor
 
         private void JumpToNextAppropriateTile(MouseState mouse, MouseState oldMouse, int jumping)
         {
-            List<TileData.Type> appropTiles = new List<TileData.Type>
-            {
-                TileData.Type.FloorDirtMediumPlain,
-                TileData.Type.FloorWaterStillSimple,
-                TileData.Type.WallBricksContourFinished
-            };
-
             TileData.Type oldType = this.tileInHand;
 
-            tileInHand += jumping;
-
-            if (jumping > 0 && appropTiles.IndexOf(oldType) + 1 < appropTiles.Count)
-                tileInHand = appropTiles[appropTiles.IndexOf(oldType) + 1];
-            else if (jumping < 0 && appropTiles.IndexOf(oldType) - 1 > -1)
-                tileInHand = appropTiles[appropTiles.IndexOf(oldType) - 1];
+            if (jumping > 0 && (int)oldType + 1 < 57)
+                tileInHand = oldType + 1;
+            else if (jumping < 0 && (int)oldType - 1 >= 0)
+                tileInHand = oldType - 1;
             else
                 tileInHand = oldType;
         }
