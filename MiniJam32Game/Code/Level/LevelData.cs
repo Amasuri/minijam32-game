@@ -42,7 +42,12 @@ namespace BPO.Minijam32.Level
             //Bombs
             foreach (var location in this.plantedBombs.Keys)
             {
-                TileDrawer.DrawTileAt(batch, TileData.Type.BombOne, location);
+                int bombFuseCh = (int)(this.plantedBombs[location] / 100);
+
+                if(bombFuseCh % 2 == 0)
+                    TileDrawer.DrawTileAt(batch, TileData.Type.BombOne, location);
+                else
+                    TileDrawer.DrawTileAt(batch, TileData.Type.BombTwo, location);
             }
 
             //Enemies
