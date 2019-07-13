@@ -17,17 +17,87 @@ namespace BPO.Minijam32.Level.Tile
             //That would make checking really easy, because water is not (insert "&& that tile" x10 times), but "(int)id > 69 && (int)id <81"
 
             //0-2: Dirts zone (when in doubt refer to the tile spritesheet)
+            FloorDirtLight = 0,
             FloorDirtMediumPlain = 1,
+            FloorDirtDark = 2,
 
             //3-4: Bomb tile zone
+            BombOne = 3,
+            BombTwo = 4,
 
             //5-18: Walls zone (roofings IDs are skipped, because are drawn only on demand)
             WallBricksContourFinished = 5,
+            WallBricksLeftFinished = 6,
+            WallBricksMiddleFinished = 7,
+            WallBricksRightFinished = 8,
+            WallBricksTopNarrow = 9,
+            WallBricksTopLeft = 10,
+            WallBricksTopCenter = 11,
+            WallBricksTopRight = 12,
+            WallBricksTopLowCornerNarrow = 13,
+            WallBricksTopLowCornerLeft = 14,
+            WallBricksTopLowCornerRight = 15,
+            WallBricksTopHighCornerNarrow = 16,
+            WallBricksTopHighCornerLeft = 17,
+            WallBricksTopHighCornerRight = 18,
+
 
             //19-29: Water IDs
             FloorWaterStillSimple = 19,
+            FloorWaterEdgeWallNarrow = 20,
+            FloorWaterEdgeWallLeft = 21,
+            FloorWaterEdgeWallCenter = 22,
+            FloorWaterEdgeWallRight = 23,
+            FloorWaterEdgeNarrow = 24,
+            FloorWaterEdgeLeft = 25,
+            FloorWaterEdgeRight= 26,
+            FloorWaterEdgeCornerNarrow = 27,
+            FloorWaterEdgeCornerLeft = 28,
+            FloorWaterEdgeCornerRight = 29,
 
-            //29+: etc... name them whatever, you can rename the current ones with F2 if you think it fits better, too
+
+            //30-37: Rocks
+            RockBasic = 30,
+            RockFunky = 31,
+            RockBlues = 32,
+            RockProg = 33,
+            RockHard = 34,
+            RockBread = 35,
+            RockGrave = 36,
+            RockTurtle = 37,
+
+            //38-42: Rocks with a bit of gold
+            RockBasicGold = 38,
+            RockFunkyGold = 39,
+            RockBluesGold = 40,
+            RockProgGold = 41,
+            RockHardGold = 42,
+
+            //43-47: Gold
+            GoldBasic = 43,
+            GoldFunky = 44,
+            GoldBlues = 45,
+            GoldProg = 46,
+            GoldHard = 47,
+
+            //48-50: Buttons
+            ButtonRed = 48,
+            ButtonYellow = 49,
+            ButtonBlue = 50,
+
+            //51-53: Pressed buttons
+            ButtonRedPressed = 51,
+            ButtonYellowPressed = 52,
+            ButtonBluePressed = 53,
+
+            //54-56: Color-coded walls
+            ColorWallRed = 54,
+            ColorWallYellow = 55,
+            ColorWallBlue = 56,
+
+            //57: Ice ice baby
+            Ice = 57
+
         }
 
         public enum State
