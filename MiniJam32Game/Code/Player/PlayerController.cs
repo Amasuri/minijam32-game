@@ -15,6 +15,8 @@ namespace BPO.Minijam32.Player
         private const Keys keyLeft = Keys.A;
         private const Keys keyRight = Keys.D;
 
+        private const Keys keyBomb = Keys.Space;
+
         private static KeyboardState keyState;
         private static KeyboardState oldKeyState;
 
@@ -30,6 +32,9 @@ namespace BPO.Minijam32.Player
                 PlayerDataManager.Move(game.levelData, new Point(-1, 0));
             else if (oneKeyPress(keyRight))
                 PlayerDataManager.Move(game.levelData, new Point(1, 0));
+
+            if (oneKeyPress(keyBomb))
+                game.levelData.PlantBombAt(PlayerDataManager.tilePosition);
 
             oldKeyState = keyState;
         }
