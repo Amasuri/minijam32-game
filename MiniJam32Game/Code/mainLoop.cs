@@ -4,6 +4,7 @@ using BPO.Minijam32.Level.Tile;
 using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace BPO.Minijam32
 {
@@ -26,6 +27,8 @@ namespace BPO.Minijam32
 
         public LevelData levelData;
 
+        static public Random Rand;
+
         public Minijam32()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -43,6 +46,8 @@ namespace BPO.Minijam32
         protected override void Initialize()
         {
             this.Window.Title = "Minijam32 BPO game";
+
+            Rand = new Random();
 
             levelData = new LevelData(this);
             PlayerDataManager.InitData(levelData);

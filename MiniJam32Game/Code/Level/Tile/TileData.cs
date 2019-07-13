@@ -54,7 +54,7 @@ namespace BPO.Minijam32.Level.Tile
         }
 
         /// <summary>
-        /// Can player pass through this block type?
+        /// Is this block type unpassable?
         /// </summary>
         public static bool IsSolid(Type type)
         {

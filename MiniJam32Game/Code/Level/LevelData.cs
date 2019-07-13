@@ -80,6 +80,10 @@ namespace BPO.Minijam32.Level
             }
 
             //Enemy go places
+            foreach (var enemy in enemies)
+            {
+                enemy.Update(game);
+            }
         }
 
         private void DestroyTileAt(Point tileCoords)

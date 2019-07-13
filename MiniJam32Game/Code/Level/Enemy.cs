@@ -28,6 +28,9 @@ namespace BPO.Minijam32.Level
         private static Dictionary<Type, Rectangle> typesPosOnSheet;
         private static Pixel placeHolderEnemyDrawer;
 
+        private const int defaultWaitTime = 500;
+        private float currentWaitTime;
+
         public Type type { get; private set; }
         public int currentHp { get; private set; }
         public Point currentPos { get; private set; }
@@ -44,6 +47,7 @@ namespace BPO.Minijam32.Level
             this.type = type;
             this.currentHp = 1;
             this.currentPos = startingPos;
+            this.currentWaitTime = defaultWaitTime;
         }
 
         public void DrawAt(SpriteBatch batch)
@@ -68,6 +72,46 @@ namespace BPO.Minijam32.Level
                 placeHolderEnemyDrawer.Draw(batch, Color.Purple, currentPos.ToVector2() * TileData.ScaledTileSize.X, TileData.ScaledTileSize);
             else if (type == Type.SomeOtherMook)
                 placeHolderEnemyDrawer.Draw(batch, Color.Red, currentPos.ToVector2() * TileData.ScaledTileSize.X, TileData.ScaledTileSize);
+        }
+
+        public void Update(Minijam32 game)
+        {
+            currentWaitTime -= Minijam32.DeltaUpdate;
+
+            if(currentWaitTime <= 0)
+            {
+                currentWaitTime = defaultWaitTime;
+                this.Move(game);
+            }
+        }
+
+        private void Move(Minijam32 game)
+        {
+            //There's a potential bug of enemy having to search for pos forever if inside 4 walls, but who's gonna do that anyway and what for
+            bool hasGeneratedPos = false;
+
+            while (!hasGeneratedPos)
+            {
+                Point move = this.GenerateNewDirectionalMove();
+                Point newPos = this.currentPos + move;
+
+                if (newPos.X <= 0 || newPos.Y <= 0 || newPos.X >= game.levelData.tileGrid.GetLength(0) || newPos.Y >= game.levelData.tileGrid.GetLength(1))
+                    continue;
+
+                if(!TileData.IsSolid( game.levelData.tileGrid[newPos.X, newPos.Y].type))
+                {
+                    hasGeneratedPos = true;
+                    this.currentPos += move;
+                }
+            }
+        }
+
+        private Point GenerateNewDirectionalMove()
+        {
+            bool xOrY = Minijam32.Rand.Next(100) >= 49;
+            int move = Minijam32.Rand.Next(3) - 1;
+
+            return xOrY == true ? new Point(move, 0) : new Point(0, move);
         }
     }
 }
