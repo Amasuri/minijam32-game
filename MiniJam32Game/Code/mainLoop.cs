@@ -90,6 +90,7 @@ namespace BPO.Minijam32
             {
                 PlayerController.UpdateMovement(this);
                 this.levelData.Update(this);
+                PlayerDataManager.Update();
             }
 
             base.Update(gameTime);

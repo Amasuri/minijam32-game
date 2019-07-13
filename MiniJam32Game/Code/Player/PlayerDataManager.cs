@@ -13,6 +13,9 @@ namespace BPO.Minijam32.Player
         static public int currentHP { get; private set; }
         static public bool isDead => currentHP <= 0;
 
+        static private float currentInvis;
+        private const float maxInvis = 1000f;
+
         static public Point tilePosition { get; private set; }
         static public Point lastMove { get; private set; }
 
@@ -20,16 +23,21 @@ namespace BPO.Minijam32.Player
         {
             tilePosition = level.currentPlayerDefaultLocation;
             currentHP = maxHP;
+            currentInvis = 0f;
         }
 
         static public void Damage()
         {
+            if (currentInvis >= 0f)
+                return;
+
             currentHP -= 1;
+            currentInvis = maxInvis;
         }
 
-        static public void Die()
+        static public void Update()
         {
-            currentHP = 0;
+            currentInvis -= Minijam32.DeltaUpdate;
         }
 
         /// <summary>
