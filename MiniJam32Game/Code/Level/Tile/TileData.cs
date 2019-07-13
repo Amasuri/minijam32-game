@@ -1,4 +1,5 @@
 ﻿using Amasuri.Reusable.Graphics;
+using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -109,8 +110,20 @@ namespace BPO.Minijam32.Level.Tile
 
         public void Destroy()
         {
-            if(IsDestructable(type))
-                this.type = Type.FloorDirtMediumPlain;
+            if (!IsDestructable(type))
+                return;
+
+            if (IsHalfGolden(type))
+            {
+                PlayerDataManager.GetCoin();
+            }
+            else if (IsGolden(type))
+            {
+                PlayerDataManager.GetCoin();
+                PlayerDataManager.GetCoin();
+            }
+
+            this.type = Type.FloorDirtMediumPlain;
         }
 
         /// <summary>
@@ -148,6 +161,24 @@ namespace BPO.Minijam32.Level.Tile
         {
             return
                 (int)type >= (int)Type.RockBasic && (int)type <= (int)Type.GoldHard;
+        }
+
+        /// <summary>
+        /// Gives one coin on destruction.
+        /// </summary>
+        public static bool IsHalfGolden(Type type)
+        {
+            return
+                (int)type >= (int)Type.RockBasicGold && (int)type <= (int)Type.RockHardGold;
+        }
+
+        /// <summary>
+        /// Gives two coins on destruction.
+        /// </summary>
+        public static bool IsGolden(Type type)
+        {
+            return
+                (int)type >= (int)Type.GoldBasic && (int)type <= (int)Type.GoldHard;
         }
     }
 }
