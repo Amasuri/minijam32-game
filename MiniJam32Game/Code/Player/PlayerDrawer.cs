@@ -1,4 +1,5 @@
-﻿using BPO.Minijam32.Level.Tile;
+﻿using Amasuri.Reusable.Graphics;
+using BPO.Minijam32.Level.Tile;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -26,6 +27,15 @@ namespace BPO.Minijam32.Player
         static private Dictionary<State, Rectangle> stateSourceRect;
         static private Vector2 heroDrawOffset;
 
+        static private Animation movingLeft;
+        static private Animation movingRight;
+        static private Animation movingUp;
+        static private Animation movingDown;
+
+        static private bool isMoving => currentAnimationMs > 0f;
+        private const float maxAnimationMs = 400f;
+        static private float currentAnimationMs;
+
         static public void InitAssets(Minijam32 game)
         {
             currentState = State.FacingDownStill;
@@ -38,6 +48,18 @@ namespace BPO.Minijam32.Player
                 { State.FacingUpStill, new Rectangle(0, 78, 16, 18) },
                 { State.FacingRightStill, new Rectangle(0, 110, 16, 18) },
             };
+
+            movingLeft = new Animation(game, "res/mob/hero_left", 16, Minijam32.Scale, 100);
+            movingRight = new Animation(game, "res/mob/hero_right", 16, Minijam32.Scale, 100);
+            movingUp = new Animation(game, "res/mob/hero_up", 16, Minijam32.Scale, 100);
+            movingDown = new Animation(game, "res/mob/hero_down", 16, Minijam32.Scale, 100);
+
+            currentAnimationMs = 0f;
+        }
+
+        internal static void NotifyAboutSuccessfulMoving()
+        {
+            currentAnimationMs = maxAnimationMs;
         }
 
         static public void DrawCurrentState(SpriteBatch batch, Point tilePos)
@@ -46,18 +68,21 @@ namespace BPO.Minijam32.Player
             UpdateCurrentState();
 
             //Select the correct source rect & draw it
-            batch.Draw
-            (
-                spritesheet,
-                new Vector2(tilePos.X * TileData.ScaledTileSize.X, tilePos.Y * TileData.ScaledTileSize.Y) + heroDrawOffset * Minijam32.Scale,
-                stateSourceRect[currentState],
-                Color.White,
-                0.0f,
-                Vector2.Zero, //table of origins for walls?
-                Minijam32.Scale,
-                SpriteEffects.None,
-                0.0f
-            );
+            if (!isMoving)
+            {
+                batch.Draw
+                (
+                    spritesheet,
+                    new Vector2(tilePos.X * TileData.ScaledTileSize.X, tilePos.Y * TileData.ScaledTileSize.Y) + heroDrawOffset * Minijam32.Scale,
+                    stateSourceRect[currentState],
+                    Color.White,
+                    0.0f,
+                    Vector2.Zero, //table of origins for walls?
+                    Minijam32.Scale,
+                    SpriteEffects.None,
+                    0.0f
+                );
+            }
         }
 
         private static void UpdateCurrentState()
@@ -72,6 +97,9 @@ namespace BPO.Minijam32.Player
                 currentState = State.FacingLeftStill;
             if (lastMove == new Point(+1, 0))
                 currentState = State.FacingRightStill;
+
+            if (currentAnimationMs > 0f)
+                currentAnimationMs -= Minijam32.DeltaDraw;
         }
     }
 }

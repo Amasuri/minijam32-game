@@ -49,7 +49,12 @@ namespace BPO.Minijam32.Player
             lastMove = move;
 
             if (TileData.IsSolid(level.tileGrid[tilePosition.X, tilePosition.Y].type) || level.IsBombAtThisPosition(tilePosition))
+            {
                 tilePosition -= move;
+                return;
+            }
+
+            PlayerDrawer.NotifyAboutSuccessfulMoving();
         }
     }
 }
