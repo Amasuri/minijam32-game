@@ -129,7 +129,7 @@ namespace BPO.Minijam32.Level.Tile
         public static bool IsSolid(Type type)
         {
             return
-                type == Type.WallBricksContourFinished;
+                (int)type >= (int)Type.BombOne && (int)type <= (int)Type.WallBricksTopHighCornerRight;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace BPO.Minijam32.Level.Tile
         public static bool IsWater(Type type)
         {
             return
-                type == Type.FloorWaterStillSimple;
+                (int)type >= (int)Type.FloorWaterStillSimple && (int)type <= (int)Type.FloorWaterEdgeCornerRight;
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace BPO.Minijam32.Level.Tile
         public static bool HasBlockAboveIt(Type type)
         {
             return
-                type == Type.WallBricksContourFinished;
+                ((int)type == (int)Type.WallBricksContourFinished)||((int)type >= (int)Type.ColorWallBlue && (int)type <= (int)Type.ColorWallYellow);
         }
 
         /// <summary>
@@ -156,7 +156,8 @@ namespace BPO.Minijam32.Level.Tile
         /// </summary>
         public static bool IsDestructable(Type type)
         {
-            return false;
+            return 
+                (int)type >= (int)Type.RockBasic && (int)type <= (int)Type.GoldHard;
         }
     }
 }
