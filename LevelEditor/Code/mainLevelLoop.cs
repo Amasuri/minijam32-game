@@ -21,6 +21,7 @@ namespace BPO.Minijam32.LevelEditor
         private MouseState oldMouse;
 
         private Point currentTile;
+        private TileData.Type tileInHand;
 
         private TileData[,] newTileGrid;
 
@@ -31,6 +32,7 @@ namespace BPO.Minijam32.LevelEditor
             base.Initialize();
 
             this.CopyFromOriginalLevelData();
+            tileInHand = TileData.Type.FloorWaterStillSimple;
         }
 
         protected override void LoadContent()
@@ -51,6 +53,9 @@ namespace BPO.Minijam32.LevelEditor
 
             currentTile = new Point((int)(mouse.Position.X / TileData.ScaledTileSize.X), (int)(mouse.Position.Y / TileData.ScaledTileSize.Y));
 
+            if (mouse.LeftButton == ButtonState.Pressed && newTileGrid[currentTile.X, currentTile.Y].type != tileInHand)
+                newTileGrid[currentTile.X, currentTile.Y] = new TileData(tileInHand);
+
             oldKeys = keys;
             oldMouse = mouse;
         }
@@ -62,9 +67,15 @@ namespace BPO.Minijam32.LevelEditor
             spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
             DrawTiles();
+            DrawTileInHand();
             DrawTileSelection();
 
             spriteBatch.End();
+        }
+
+        private void DrawTileInHand()
+        {
+            TileDrawer.DrawTileAt(spriteBatch, tileInHand, currentTile);
         }
 
         private void DrawTileSelection()
