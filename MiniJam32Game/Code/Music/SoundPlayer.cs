@@ -17,6 +17,11 @@ namespace BPO.Minijam32.Music
         {
             BombExplosion,
             HealPlayer,
+            HurtPlayer,
+            DeadPlayer,
+            RockCrumb,
+            GameOverLick,
+            NextLevelLick,
         }
 
         static private Dictionary<Type, SoundEffect> sounds;
@@ -26,6 +31,12 @@ namespace BPO.Minijam32.Music
             sounds = new Dictionary<Type, SoundEffect>
             {
                 { Type.BombExplosion, game.Content.Load<SoundEffect>("res/sound/explosion0") },
+                /*{ Type.HealPlayer, game.Content.Load<SoundEffect>("res/sound/explosion0") },*/
+                { Type.HurtPlayer, game.Content.Load<SoundEffect>("res/sound/playerhurt") },
+                { Type.DeadPlayer, game.Content.Load<SoundEffect>("res/sound/ded") },
+                { Type.RockCrumb, game.Content.Load<SoundEffect>("res/sound/rocks") },
+                { Type.GameOverLick, game.Content.Load<SoundEffect>("res/sound/game over") },
+                { Type.NextLevelLick, game.Content.Load<SoundEffect>("res/sound/new level") },
             };
         }
 
