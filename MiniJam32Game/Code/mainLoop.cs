@@ -50,7 +50,7 @@ namespace BPO.Minijam32
 
         protected override void Initialize()
         {
-            this.Window.Title = "Minijam32 BPO game";
+            this.Window.Title = "Banjo Battie";
 
             Rand = new Random();
 
