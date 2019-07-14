@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BPO.Minijam32.Player;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
@@ -21,6 +22,8 @@ namespace BPO.Minijam32.Music
         private SongType currentSong;
         private Dictionary<SongType, Song> songs;
 
+        private bool isMuted = false;
+
         public MusicPlayer(Game game )
         {
             this.songs = new Dictionary<SongType, Song>
@@ -36,6 +39,13 @@ namespace BPO.Minijam32.Music
 
         public void Update(Minijam32 game)
         {
+            if(!isMuted && PlayerDataManager.isDead)
+            {
+                isMuted = true;
+                MediaPlayer.Stop();
+                SoundPlayer.PlaySound(SoundPlayer.Type.GameOverLick);
+            }
+
             SongType shouldBePlaying = (SongType)(((game.levelData.currentLevelId-1) % 3));
 
             if(shouldBePlaying != this.currentSong)
