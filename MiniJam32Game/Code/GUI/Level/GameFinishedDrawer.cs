@@ -30,7 +30,7 @@ namespace BPO.Minijam32.GUI.Level
             }
             else
             {
-                InfoDrawer.DrawCoinsGui(batch);
+                InfoDrawer.DrawCoinsGui(batch, centered: true);
             }
         }
     }

@@ -34,13 +34,27 @@ namespace BPO.Minijam32.GUI.Level
             DrawCoinsGui(batch);
         }
 
-        public static void DrawCoinsGui(SpriteBatch batch)
+        public static void DrawCoinsGui(SpriteBatch batch, bool centered = false)
         {
+            Vector2 offset = Vector2.Zero;
+            if(centered)
+            {
+                offset = new Vector2(Minijam32.ScaledWidth - 6 * 2 * Minijam32.Scale, Minijam32.ScaledHeight - 8 * Minijam32.Scale) / 2;
+            }
+
             int coinsLessTens = PlayerDataManager.coins % 10;
             int coinsTens = PlayerDataManager.coins / 10;
 
-            batch.Draw(numbersSheet, new Vector2(289, 25) * Minijam32.Scale, new Rectangle(6 * coinsLessTens, 0, 6, 8), normalColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
-            batch.Draw(numbersSheet, new Vector2(282, 25) * Minijam32.Scale, new Rectangle(6 * coinsTens, 0, 6, 8), normalColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+            if (offset == Vector2.Zero)
+            {
+                batch.Draw(numbersSheet, new Vector2(289, 25) * Minijam32.Scale, new Rectangle(6 * coinsLessTens, 0, 6, 8), normalColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+                batch.Draw(numbersSheet, new Vector2(282, 25) * Minijam32.Scale, new Rectangle(6 * coinsTens, 0, 6, 8), normalColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+            }
+            else
+            {
+                batch.Draw(numbersSheet, offset + new Vector2(7, 0) * Minijam32.Scale, new Rectangle(6 * coinsLessTens, 0, 6, 8), normalColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+                batch.Draw(numbersSheet, offset, new Rectangle(6 * coinsTens, 0, 6, 8), normalColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+            }
         }
 
         private static void DrawHpGui(SpriteBatch batch)
