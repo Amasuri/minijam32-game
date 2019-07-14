@@ -34,7 +34,9 @@ namespace BPO.Minijam32.Music
             };
 
             this.currentSong = (SongType)(-1);
+
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.75f;
         }
 
         public void Update(Minijam32 game)
