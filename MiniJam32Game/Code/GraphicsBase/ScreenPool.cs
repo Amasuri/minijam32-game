@@ -1,4 +1,5 @@
-﻿using BPO.Minijam32;
+﻿using System;
+using BPO.Minijam32;
 using BPO.Minijam32.Code.GUI;
 using BPO.Minijam32.GraphicsBase;
 using BPO.Minijam32.GUI.Level;
@@ -46,6 +47,11 @@ namespace Amasuri.Reusable.Graphics
             newLevelDrawer = new NewLevelDrawer(game);
             finishedGameDrawer = new GameFinishedDrawer(game);
             menuGui = new MenuGui(game);
+        }
+
+        public void GoMenu()
+        {
+            screenState = ScreenState.Start;
         }
 
         /// <summary>
@@ -123,6 +129,7 @@ namespace Amasuri.Reusable.Graphics
             }
             else if (screenState == ScreenState.DeadGameOver)
             {
+                newLevelDrawer.UpdateDeathScene(game, _key);
             }
             else if (screenState == ScreenState.SwitchingLevel)
             {

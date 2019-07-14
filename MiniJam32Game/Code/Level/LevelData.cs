@@ -344,6 +344,14 @@ namespace BPO.Minijam32.Level
             return this.plantedBombs.ContainsKey(location);
         }
 
+        public void ResetToDefault()
+        {
+            currentLevelId = 1;
+            hasCompletedLastLevel = false;
+
+            this.ReInitializeLevelData(currentLevelId);
+        }
+
 #if DEBUG
 
         public void DebugSetLevel(int id)

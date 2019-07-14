@@ -1,6 +1,8 @@
 ﻿using Amasuri.Reusable.Graphics;
+using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,16 @@ namespace BPO.Minijam32.GUI.Level
                 deathAlpha++;
             else
                 batch.Draw(youDied, Vector2.Zero, null, Color.White, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+        }
+
+        public void UpdateDeathScene(Minijam32 game, KeyboardState keys)
+        {
+            if(keys.IsKeyDown(Keys.Space))
+            {
+                game.levelData.ResetToDefault();
+                game.screenPool.GoMenu();
+                PlayerDataManager.ResetToDefaultState();
+            }
         }
     }
 }

@@ -93,6 +93,13 @@ namespace BPO.Minijam32.Player
             currentInvis = 0f;
         }
 
+        static internal void ResetToDefaultState()
+        {
+            currentHP = maxHP;
+            currentInvis = 0f;
+            coins = 0;
+        }
+
         static public void Heal()
         {
             SoundPlayer.PlaySound(SoundPlayer.Type.HealPlayer);
