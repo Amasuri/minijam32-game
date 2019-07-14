@@ -116,6 +116,12 @@ namespace BPO.Minijam32.Level.Tile
             ColorWallRemainderRed = 66,
             ColorWallRemainderYellow = 67,
             ColorWallRemainderBlue = 68,
+
+            //1000-1003: Character Death (can't place it)
+            CharacterDeathDown = 1000,
+            CharacterDeathRight = 1001,
+            CharacterDeathUp = 1002,
+            CharacterDeathLeft = 1003,
         }
 
         public Type type { get; private set; }

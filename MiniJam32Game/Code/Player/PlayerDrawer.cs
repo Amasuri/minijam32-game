@@ -66,43 +66,57 @@ namespace BPO.Minijam32.Player
             //State is literally draw state, so it makes sense to put & update it right on draw cycles
             UpdateCurrentState();
 
-            //Select the correct source rect & draw it
-            if (!isMoving)
+            if (!PlayerDataManager.isDead)
             {
-                batch.Draw
-                (
-                    spritesheet,
-                    new Vector2(tilePos.X * TileData.ScaledTileSize.X, tilePos.Y * TileData.ScaledTileSize.Y) + heroDrawOffset * Minijam32.Scale,
-                    stateSourceRect[currentState],
-                    Color.White,
-                    0.0f,
-                    Vector2.Zero, //table of origins for walls?
-                    Minijam32.Scale,
-                    SpriteEffects.None,
-                    0.0f
-                );
+                //Select the correct source rect & draw it
+                if (!isMoving)
+                {
+                    batch.Draw
+                    (
+                        spritesheet,
+                        new Vector2(tilePos.X * TileData.ScaledTileSize.X, tilePos.Y * TileData.ScaledTileSize.Y) + heroDrawOffset * Minijam32.Scale,
+                        stateSourceRect[currentState],
+                        Color.White,
+                        0.0f,
+                        Vector2.Zero, //table of origins for walls?
+                        Minijam32.Scale,
+                        SpriteEffects.None,
+                        0.0f
+                    );
+                }
+                else
+                {
+                    var drawPos = new Vector2(tilePos.X * TileData.ScaledTileSize.X, tilePos.Y * TileData.ScaledTileSize.Y) + animationDrawOffset;
+                    switch (currentState)
+                    {
+                        case State.FacingDownStill:
+                            movingDown.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(0, maxFrames - frameStep * ((int)currentAnimationMs / (int)oneFrameTime)));
+                            break;
+
+                        case State.FacingLeftStill:
+                            movingLeft.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(frameStep * ((int)currentAnimationMs / (int)oneFrameTime), 0));
+                            break;
+
+                        case State.FacingRightStill:
+                            movingRight.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(maxFrames - frameStep * ((int)currentAnimationMs / (int)oneFrameTime), 0));
+                            break;
+
+                        case State.FacingUpStill:
+                            movingUp.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(0, frameStep * ((int)currentAnimationMs / (int)oneFrameTime)));
+                            break;
+                    }
+                }
             }
             else
             {
-                var drawPos = new Vector2(tilePos.X * TileData.ScaledTileSize.X, tilePos.Y * TileData.ScaledTileSize.Y) + animationDrawOffset;
-                switch (currentState)
-                {
-                    case State.FacingDownStill:
-                        movingDown.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(0, maxFrames - frameStep * ((int)currentAnimationMs/(int)oneFrameTime)));
-                        break;
-
-                    case State.FacingLeftStill:
-                        movingLeft.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(frameStep * ((int)currentAnimationMs / (int)oneFrameTime), 0));
-                        break;
-
-                    case State.FacingRightStill:
-                        movingRight.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(maxFrames - frameStep * ((int)currentAnimationMs / (int)oneFrameTime), 0));
-                        break;
-
-                    case State.FacingUpStill:
-                        movingUp.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw, drawPos + new Vector2(0, frameStep * ((int)currentAnimationMs / (int)oneFrameTime)));
-                        break;
-                }
+                if (currentState == State.FacingDownStill)
+                    TileDrawer.DrawTileAt(batch, TileData.Type.CharacterDeathDown, PlayerDataManager.tilePosition);
+                if (currentState == State.FacingLeftStill)
+                    TileDrawer.DrawTileAt(batch, TileData.Type.CharacterDeathLeft, PlayerDataManager.tilePosition);
+                if (currentState == State.FacingRightStill)
+                    TileDrawer.DrawTileAt(batch, TileData.Type.CharacterDeathRight, PlayerDataManager.tilePosition);
+                if (currentState == State.FacingUpStill)
+                    TileDrawer.DrawTileAt(batch, TileData.Type.CharacterDeathUp, PlayerDataManager.tilePosition);
             }
         }
 
