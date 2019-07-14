@@ -69,8 +69,11 @@ namespace BPO.Minijam32.GUI.Level
             else if (playerHp < 2)
                 drawColor = deathColor;
 
-            batch.Draw(numbersSheet, new Vector2(35, 25) * Minijam32.Scale, new Rectangle(0, 0, 6, 8), drawColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
-            batch.Draw(numbersSheet, new Vector2(42, 25) * Minijam32.Scale, new Rectangle(6 * playerHp, 0, 6, 8), drawColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+            int hpLessTens = playerHp % 10;
+            int hpTens = playerHp / 10;
+
+            batch.Draw(numbersSheet, new Vector2(35, 25) * Minijam32.Scale, new Rectangle(6 * hpTens, 0, 6, 8), drawColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
+            batch.Draw(numbersSheet, new Vector2(42, 25) * Minijam32.Scale, new Rectangle(6 * hpLessTens, 0, 6, 8), drawColor, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
         }
     }
 }
