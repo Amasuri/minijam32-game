@@ -63,10 +63,10 @@ namespace BPO.Minijam32.Player
         /// </summary>
         static internal void TryMove(LevelData level, Point move)
         {
-            if(currentMoveCoolDown >= 0)
-            {
-                return;
-            }
+            //if(currentMoveCoolDown >= 0)
+            //{
+            //    return;
+            //}
 
             tilePosition += move;
             lastMove = move;

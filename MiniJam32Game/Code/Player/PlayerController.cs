@@ -28,13 +28,13 @@ namespace BPO.Minijam32.Player
             if (PlayerDataManager.isDead)
                 return;
 
-            if (keyState.IsKeyDown( keyUp ))
+            if (OneKeyPress(keyUp ))
                 PlayerDataManager.TryMove(game.levelData, new Point(0, -1));
-            else if (keyState.IsKeyDown(keyDown))
+            else if (OneKeyPress(keyDown))
                 PlayerDataManager.TryMove(game.levelData, new Point(0, +1));
-            else if (keyState.IsKeyDown(keyLeft))
+            else if (OneKeyPress(keyLeft))
                 PlayerDataManager.TryMove(game.levelData, new Point(-1, 0));
-            else if (keyState.IsKeyDown(keyRight))
+            else if (OneKeyPress(keyRight))
                 PlayerDataManager.TryMove(game.levelData, new Point(1, 0));
 
             if (OneKeyPress( keyBomb ))
