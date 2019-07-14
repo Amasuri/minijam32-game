@@ -134,7 +134,7 @@ namespace BPO.Minijam32.Level.Enemies
 
         private static bool IsThisNewPosOkay(Minijam32 game, Point newPos)
         {
-            return !TileData.IsSolid(game.levelData.tileGrid[newPos.X, newPos.Y].type) && !game.levelData.IsBombAtThisPosition(newPos);
+            return !TileData.IsSolid(game.levelData.tileGrid[newPos.X, newPos.Y].type) && !game.levelData.IsBombAtThisPosition(newPos) && !game.levelData.IsEnemyThere(newPos);
         }
 
         private Point GenerateNewDirectionalMove()

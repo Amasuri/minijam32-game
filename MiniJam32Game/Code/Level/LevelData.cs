@@ -230,6 +230,17 @@ namespace BPO.Minijam32.Level
             }
         }
 
+        public bool IsEnemyThere(Point newPos)
+        {
+            foreach (var enemy in this.enemies)
+            {
+                if (enemy.currentPos == newPos)
+                    return true;
+            }
+
+            return false;
+        }
+
         private void FindAndSetNextTeleportPoint()
         {
             for (int x = 0; x < tileGrid.GetLength(0); x++)
