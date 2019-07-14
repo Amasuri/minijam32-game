@@ -73,11 +73,11 @@ namespace BPO.Minijam32.Level.Tile
                 { TileData.Type.ButtonRedPressed, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 9) },
                 { TileData.Type.ButtonYellowPressed, new Vector2(TileData.TileSize.X * 1, TileData.TileSize.Y * 9) },
                 { TileData.Type.ButtonBluePressed, new Vector2(TileData.TileSize.X * 2, TileData.TileSize.Y * 9) },
-                { TileData.Type.ColorWallRed, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 10) },
-                { TileData.Type.ColorWallYellow, new Vector2(TileData.TileSize.X * 1, TileData.TileSize.Y * 10) },
-                { TileData.Type.ColorWallBlue, new Vector2(TileData.TileSize.X * 2, TileData.TileSize.Y * 10) },
-                { TileData.Type.Ice, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 11) },
-
+                { TileData.Type.ColorWallRed, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 11) },
+                { TileData.Type.ColorWallYellow, new Vector2(TileData.TileSize.X * 1, TileData.TileSize.Y * 11) },
+                { TileData.Type.ColorWallBlue, new Vector2(TileData.TileSize.X * 2, TileData.TileSize.Y * 11) },
+                { TileData.Type.Ice, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 12) },
+                { TileData.Type.NewLevelHole, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 13) },
             };
         }
 

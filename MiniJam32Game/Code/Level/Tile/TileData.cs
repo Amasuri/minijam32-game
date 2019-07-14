@@ -95,7 +95,10 @@ namespace BPO.Minijam32.Level.Tile
             ColorWallBlue = 56,
 
             //57: Ice ice baby
-            Ice = 57
+            Ice = 57,
+
+            //58: Rabbit hole
+            NewLevelHole = 58,
         }
 
         public Type type { get; private set; }

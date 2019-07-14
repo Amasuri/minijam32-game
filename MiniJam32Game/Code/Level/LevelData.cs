@@ -21,6 +21,7 @@ namespace BPO.Minijam32.Level
         public TileData[,] tileGrid { get; private set; }
         public Point currentPlayerDefaultLocation { get; private set; }
         public List<Enemy> enemies { get; private set; }
+        public Point TeleportPoint { get; private set; }
 
         private const float bombFuseTimerInMs = 3000f;
         private const int maxBombCount = 4;
@@ -82,6 +83,15 @@ namespace BPO.Minijam32.Level
 
         public void Update(Minijam32 game)
         {
+            //If player at point, then advance
+            if(PlayerDataManager.tilePosition == this.TeleportPoint)
+            {
+                if (currentLevelId >= maxLevelId)
+                    return;
+                currentLevelId++;
+                this.ReInitializeLevelData(currentLevelId);
+            }
+
             //Bombs go boom
             var bombsDeleteLocations = new List<Point> { };
             var iterCollection = new List<Point>( this.plantedBombs.Keys );
@@ -141,6 +151,21 @@ namespace BPO.Minijam32.Level
             }
         }
 
+        private void FindAndSetNextTeleportPoint()
+        {
+            for (int x = 0; x < tileGrid.GetLength(0); x++)
+                for (int y = 0; y < tileGrid.GetLength(1); y++)
+                {
+                    if(tileGrid[x, y].type == TileData.Type.NewLevelHole)
+                    {
+                        this.TeleportPoint = new Point(x, y);
+                        return;
+                    }
+                }
+
+            throw new Exception("No teleport point found. Level is not beatable.");
+        }
+
         private void DestroyTileAt(Point tileCoords)
         {
             tileGrid[tileCoords.X, tileCoords.Y].Destroy();
@@ -167,6 +192,8 @@ namespace BPO.Minijam32.Level
             file = File.ReadAllLines(String.Format("Code/Level/Layouts/level{0}.extradata", level));
             var plLocData = file[0].Replace("hero pos: ", "").Split( new string[]{ " " }, StringSplitOptions.RemoveEmptyEntries);
             this.currentPlayerDefaultLocation = new Point(Convert.ToInt32( plLocData[0] ), Convert.ToInt32 ( plLocData[1] ));
+
+            //Reset player
             PlayerDataManager.ResetBeforeNewLevel(this.currentPlayerDefaultLocation);
 
             //Placeholder enemy data: later be like "enum_int pos_X pos_Y" in additional level file
@@ -187,6 +214,9 @@ namespace BPO.Minijam32.Level
 
             //Reset bomb data
             this.plantedBombs = new Dictionary<Point, float> { };
+
+            //New teleport point
+            this.FindAndSetNextTeleportPoint();
         }
 
         public void TryPlantBombAt(Point tilePosition)
