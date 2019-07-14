@@ -1,5 +1,6 @@
 ﻿using Amasuri.Reusable.Graphics;
 using BPO.Minijam32.Level.Tile;
+using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -24,6 +25,7 @@ namespace BPO.Minijam32.Level.Enemies
         }
 
         private const int defaultWaitTime = 1000;
+        private const int hastedWaitTime = 500;
         private float currentWaitTime;
 
         public Type type { get; private set; }
@@ -59,6 +61,42 @@ namespace BPO.Minijam32.Level.Enemies
 
         private void Move(Minijam32 game)
         {
+            //The idea is that a straight line difference is always integer, but the non-straight line will always have some weirdass numbers
+            bool playerInStraightLine = (this.currentPos - PlayerDataManager.tilePosition).ToVector2().Length() % 1 == 0;
+
+            bool success = false;
+            if (playerInStraightLine)
+            {
+                success = TryMoveInStraightLine(game);
+            }
+
+            //For every other case including finding a straight line but meeting a wall, use random movements
+            if(!success)
+                ControlRandomMovement(game);
+        }
+
+        private bool TryMoveInStraightLine(Minijam32 game)
+        {
+            //Obtain the direction and, since we're tile-based, make only one step at a time
+            Point move = PlayerDataManager.tilePosition - this.currentPos;
+            move = new Point(Math.Sign(move.X), Math.Sign(move.Y));
+
+            //Remember new position for later calculations
+            Point newPos = this.currentPos + move;
+
+            if (IsThisNewPosOkay(game, newPos))
+            {
+                this.currentPos += move;
+                this.lastMove = move;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        private void ControlRandomMovement(Minijam32 game)
+        {
             bool hasGeneratedPos = false;
             int i = 0;
 
@@ -74,13 +112,18 @@ namespace BPO.Minijam32.Level.Enemies
                 if (newPos.X <= 0 || newPos.Y <= 0 || newPos.X >= game.levelData.tileGrid.GetLength(0) || newPos.Y >= game.levelData.tileGrid.GetLength(1))
                     continue;
 
-                if(!TileData.IsSolid( game.levelData.tileGrid[newPos.X, newPos.Y].type) && !game.levelData.IsBombAtThisPosition(newPos))
+                if (IsThisNewPosOkay(game, newPos))
                 {
                     hasGeneratedPos = true;
                     this.currentPos += move;
                     this.lastMove = move;
                 }
             }
+        }
+
+        private static bool IsThisNewPosOkay(Minijam32 game, Point newPos)
+        {
+            return !TileData.IsSolid(game.levelData.tileGrid[newPos.X, newPos.Y].type) && !game.levelData.IsBombAtThisPosition(newPos);
         }
 
         private Point GenerateNewDirectionalMove()
