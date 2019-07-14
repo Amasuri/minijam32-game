@@ -39,25 +39,25 @@ namespace BPO.Minijam32.Player
 
 #if DEBUG
             if (OneKeyPress(Keys.D1))
-                game.levelData.ReInitializeLevelData(1);
+                game.levelData.DebugSetLevel(1);
             if (OneKeyPress(Keys.D2))
-                game.levelData.ReInitializeLevelData(2);
+                game.levelData.DebugSetLevel(2);
             if (OneKeyPress(Keys.D3))
-                game.levelData.ReInitializeLevelData(3);
+                game.levelData.DebugSetLevel(3);
             if (OneKeyPress(Keys.D4))
-                game.levelData.ReInitializeLevelData(4);
+                game.levelData.DebugSetLevel(4);
             if (OneKeyPress(Keys.D5))
-                game.levelData.ReInitializeLevelData(5);
+                game.levelData.DebugSetLevel(5);
             if (OneKeyPress(Keys.D6))
-                game.levelData.ReInitializeLevelData(6);
+                game.levelData.DebugSetLevel(6);
             if (OneKeyPress(Keys.D7))
-                game.levelData.ReInitializeLevelData(7);
+                game.levelData.DebugSetLevel(7);
             if (OneKeyPress(Keys.D8))
-                game.levelData.ReInitializeLevelData(8);
+                game.levelData.DebugSetLevel(8);
             if (OneKeyPress(Keys.D9))
-                game.levelData.ReInitializeLevelData(9);
+                game.levelData.DebugSetLevel(9);
             if (OneKeyPress(Keys.D0))
-                game.levelData.ReInitializeLevelData(10);
+                game.levelData.DebugSetLevel(10);
 #endif
 
             if (OneKeyPress( keyBomb ))

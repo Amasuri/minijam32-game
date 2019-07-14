@@ -269,7 +269,7 @@ namespace BPO.Minijam32.Level
         /// Should be PRIVATE, but for debugging is public.
         /// Meaning: Don't use outside of LevelData class!
         /// </summary>
-        public void ReInitializeLevelData(int level)
+        private void ReInitializeLevelData(int level)
         {
             //All things tiles related
             var file = File.ReadAllLines(String.Format("Code/Level/Layouts/level{0}.leveldata", level));
@@ -336,5 +336,15 @@ namespace BPO.Minijam32.Level
         {
             return this.plantedBombs.ContainsKey(location);
         }
+
+#if DEBUG
+
+        public void DebugSetLevel(int id)
+        {
+            this.currentLevelId = id;
+            this.ReInitializeLevelData(id);
+        }
+
+#endif
     }
 }
