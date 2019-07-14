@@ -14,7 +14,7 @@ namespace Amasuri.Reusable.Graphics
     /// </summary>
     public class ScreenPool : IDrawArranger
     {
-        public enum ScreenState { Start, Playing, EndGame,
+        public enum ScreenState { Start, Playing, DeadGameOver,
             SwitchingLevel
         }
         public ScreenState screenState { get; private set; }
@@ -55,6 +55,11 @@ namespace Amasuri.Reusable.Graphics
             }
             else if (screenState == ScreenState.Playing)
             {
+                if(PlayerDataManager.isDead)
+                {
+                    this.SetStateToDeath();
+                }
+
                 game.levelData.DrawBelow(game, batch);
                 PlayerDrawer.DrawCurrentState(batch, PlayerDataManager.tilePosition);
                 game.levelData.DrawAbove(game, batch);
@@ -62,17 +67,18 @@ namespace Amasuri.Reusable.Graphics
 
                 InfoDrawer.Draw(batch);
             }
-            else if (screenState == ScreenState.EndGame)
-            {
-            }
-            else if (screenState == ScreenState.SwitchingLevel)
+            else if (screenState == ScreenState.DeadGameOver)
             {
                 game.levelData.DrawBelow(game, batch);
                 PlayerDrawer.DrawCurrentState(batch, PlayerDataManager.tilePosition);
                 game.levelData.DrawAbove(game, batch);
                 Animator.DrawFieldAnimations(batch);
 
-                this.newLevelDrawer.Draw(batch);
+                this.newLevelDrawer.DrawDeathScene(batch);
+            }
+            else if (screenState == ScreenState.SwitchingLevel)
+            {
+                this.newLevelDrawer.DrawNextLevelIntro(batch);
             }
 
             batch.End();
@@ -90,7 +96,7 @@ namespace Amasuri.Reusable.Graphics
             else if (screenState == ScreenState.Playing)
             {
             }
-            else if (screenState == ScreenState.EndGame)
+            else if (screenState == ScreenState.DeadGameOver)
             {
             }
             else if (screenState == ScreenState.SwitchingLevel)
@@ -114,6 +120,11 @@ namespace Amasuri.Reusable.Graphics
 
             music.Mute();
             SoundPlayer.PlaySound(SoundPlayer.Type.NextLevelLick);
+        }
+
+        private void SetStateToDeath()
+        {
+            screenState = ScreenState.DeadGameOver;
         }
     }
 }
