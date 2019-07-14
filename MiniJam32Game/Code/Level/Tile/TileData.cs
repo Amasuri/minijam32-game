@@ -151,13 +151,22 @@ namespace BPO.Minijam32.Level.Tile
         public void PressPlate()
         {
             if (this.type == Type.ButtonRed)
+            {
                 this.type = Type.ButtonRedPressed;
+                SoundPlayer.PlaySound(SoundPlayer.Type.PlatePress);
+            }
 
             if (this.type == Type.ButtonBlue)
+            {
                 this.type = Type.ButtonBluePressed;
+                SoundPlayer.PlaySound(SoundPlayer.Type.PlatePress);
+            }
 
             if (this.type == Type.ButtonYellow)
+            {
                 this.type = Type.ButtonYellowPressed;
+                SoundPlayer.PlaySound(SoundPlayer.Type.PlatePress);
+            }
         }
 
         public void RemoveColoredWallTopping()

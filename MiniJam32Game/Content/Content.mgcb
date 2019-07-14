@@ -223,6 +223,12 @@
 /processorParam:Quality=Best
 /build:../../res/sound/bat ded.ogg;res/sound/bat ded.ogg
 
+#begin ../../res/sound/button press.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/button press.ogg;res/sound/button press.ogg
+
 #begin ../../res/sound/cwby1.ogg
 /importer:OggImporter
 /processor:SongProcessor
@@ -264,6 +270,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:../../res/sound/helth.ogg;res/sound/helth.ogg
+
+#begin ../../res/sound/menu click.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/menu click.ogg;res/sound/menu click.ogg
+
+#begin ../../res/sound/menu confirm.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/menu confirm.ogg;res/sound/menu confirm.ogg
 
 #begin ../../res/sound/new level.ogg
 /importer:OggImporter

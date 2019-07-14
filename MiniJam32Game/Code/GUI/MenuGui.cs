@@ -1,4 +1,5 @@
 ﻿using Amasuri.Reusable.Graphics;
+using BPO.Minijam32.Music;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -50,18 +51,27 @@ namespace BPO.Minijam32.Code.GUI
 
         public override void Update(Minijam32 game, MouseState mouse, MouseState oldMouse, KeyboardState keys, KeyboardState oldKeys)
         {
-            if (keys.IsKeyDown(Keys.W) || keys.IsKeyDown(Keys.Up))
+            if ((keys.IsKeyDown(Keys.W) && oldKeys.IsKeyUp(Keys.W)) || (keys.IsKeyDown(Keys.Up) && oldKeys.IsKeyUp(Keys.Up)))
+            {
                 pressedButton--;
-            else if (keys.IsKeyDown(Keys.S) || keys.IsKeyDown(Keys.Down))
+                SoundPlayer.PlaySound(SoundPlayer.Type.MenuSwitch);
+            }
+            else if ((keys.IsKeyDown(Keys.S) && oldKeys.IsKeyUp(Keys.S)) || (keys.IsKeyDown(Keys.Down) && oldKeys.IsKeyUp(Keys.Down)))
+            {
                 pressedButton++;
+                SoundPlayer.PlaySound(SoundPlayer.Type.MenuSwitch);
+            }
 
             if (pressedButton < 0)
                 pressedButton = 0;
             if (pressedButton > 1)
                 pressedButton = 1;
 
-            if (keys.IsKeyDown(Keys.Space))
+            if (keys.IsKeyDown(Keys.Space) && oldKeys.IsKeyUp(Keys.Space))
+            {
                 game.screenPool.TriggerGameStart();
+                SoundPlayer.PlaySound(SoundPlayer.Type.MenuConfirm);
+            }
         }
     }
 }

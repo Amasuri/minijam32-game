@@ -23,6 +23,10 @@ namespace BPO.Minijam32.Music
             GameOverLick,
             NextLevelLick,
             BatDead,
+
+            PlatePress,
+            MenuConfirm,
+            MenuSwitch,
         }
 
         static private Dictionary<Type, SoundEffect> sounds;
@@ -39,6 +43,10 @@ namespace BPO.Minijam32.Music
                 { Type.GameOverLick, game.Content.Load<SoundEffect>("res/sound/game over") },
                 { Type.NextLevelLick, game.Content.Load<SoundEffect>("res/sound/new level") },
                 { Type.BatDead, game.Content.Load<SoundEffect>("res/sound/bat ded") },
+
+                { Type.PlatePress, game.Content.Load<SoundEffect>("res/sound/button press") },
+                { Type.MenuConfirm, game.Content.Load<SoundEffect>("res/sound/menu confirm") },
+                { Type.MenuSwitch, game.Content.Load<SoundEffect>("res/sound/menu click") },
             };
         }
 
