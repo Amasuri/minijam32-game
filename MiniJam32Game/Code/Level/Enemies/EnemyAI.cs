@@ -84,6 +84,16 @@ namespace BPO.Minijam32.Level.Enemies
             //Remember new position for later calculations
             Point newPos = this.currentPos + move;
 
+            //Try to see if the tiles on straight line don't contain any bad ones like solid or bombs
+            int tilesInLine = (int)(PlayerDataManager.tilePosition - this.currentPos).ToVector2().Length();
+            for (int i = 1; i < tilesInLine; i++)
+            {
+                bool normalTile = IsThisNewPosOkay(game, (move.ToVector2() * i * Math.Sign(move.X + move.Y)).ToPoint() + this.currentPos);
+                if (!normalTile)
+                    return false;
+            }
+
+            //Try to see if there aren't any tiles like bombs and solid tiles, and move
             if (IsThisNewPosOkay(game, newPos))
             {
                 this.currentPos += move;
@@ -92,6 +102,7 @@ namespace BPO.Minijam32.Level.Enemies
                 return true;
             }
 
+            //We've failed every check up to that
             return false;
         }
 
