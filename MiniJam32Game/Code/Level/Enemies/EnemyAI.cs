@@ -15,18 +15,13 @@ namespace BPO.Minijam32.Level.Enemies
     /// So, for right now one class is enough.
     /// In case of something, this can become an abstract class - the base for different AIs and such.
     /// </summary>
-    public class Enemy
+    public class EnemyAI
     {
         public enum Type
         {
-            SomeMook,
+            CommonBat,
             SomeOtherMook,
         }
-
-        //Split this shit to EnemyDrawer in case of post-jam
-        private static Texture2D allEnemiesSheet;
-        private static Dictionary<Type, Rectangle> typesPosOnSheet;
-        private static Pixel placeHolderEnemyDrawer;
 
         private const int defaultWaitTime = 500;
         private float currentWaitTime;
@@ -36,42 +31,12 @@ namespace BPO.Minijam32.Level.Enemies
         public Point currentPos { get; private set; }
         public bool isDead => currentHp <= 0;
 
-        //Split this shit to EnemyDrawer in case of post-jam
-        static public void LoadAssets(Minijam32 game)
-        {
-            placeHolderEnemyDrawer = new Pixel(game.GraphicsDevice);
-        }
-
-        public Enemy(Type type, Point startingPos)
+        public EnemyAI(Type type, Point startingPos)
         {
             this.type = type;
             this.currentHp = 2;
             this.currentPos = startingPos;
             this.currentWaitTime = defaultWaitTime;
-        }
-
-        public void DrawAt(SpriteBatch batch)
-        {
-            //Example source from TileDrawer:
-
-            //batch.Draw
-            //(
-            //    tileSheet,
-            //    new Vector2(tilePos.X * TileData.ScaledTileSize.X, tilePos.Y * TileData.ScaledTileSize.Y),
-            //    new Rectangle(typeSourceRect[type].ToPoint(), TileData.TileSize.ToPoint()),
-            //    Color.White,
-            //    0.0f,
-            //    Vector2.Zero,
-            //    Minijam32.Scale,
-            //    SpriteEffects.None,
-            //    0.0f
-            //);
-
-            //Placeholder code:
-            if (type == Type.SomeMook)
-                placeHolderEnemyDrawer.Draw(batch, Color.Purple, currentPos.ToVector2() * TileData.ScaledTileSize.X, TileData.ScaledTileSize);
-            else if (type == Type.SomeOtherMook)
-                placeHolderEnemyDrawer.Draw(batch, Color.Red, currentPos.ToVector2() * TileData.ScaledTileSize.X, TileData.ScaledTileSize);
         }
 
         public void Update(Minijam32 game)

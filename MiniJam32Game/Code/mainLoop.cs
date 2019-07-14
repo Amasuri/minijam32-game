@@ -66,7 +66,6 @@ namespace BPO.Minijam32
 
             TileDrawer.InitAssets(this);
             PlayerDrawer.InitAssets(this);
-            Enemy.LoadAssets(this);
             EnemyDrawer.LoadAssets(this);
 
             screenPool = new ScreenPool(this);
@@ -93,6 +92,7 @@ namespace BPO.Minijam32
                 PlayerController.UpdateMovement(this);
                 this.levelData.Update(this);
                 PlayerDataManager.Update();
+                EnemyDrawer.UpdateTicks(Minijam32.DeltaUpdate);
             }
 
             base.Update(gameTime);

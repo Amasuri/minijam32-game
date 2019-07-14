@@ -21,7 +21,7 @@ namespace BPO.Minijam32.Level
         public Dictionary<Point, float> plantedBombs { get; private set; }
         public TileData[,] tileGrid { get; private set; }
         public Point currentPlayerDefaultLocation { get; private set; }
-        public List<Enemy> enemies { get; private set; }
+        public List<EnemyAI> enemies { get; private set; }
         public Point TeleportPoint { get; private set; }
 
         private const float bombFuseTimerInMs = 3000f;
@@ -69,7 +69,7 @@ namespace BPO.Minijam32.Level
             //Enemies
             foreach (var enemy in this.enemies)
             {
-                enemy.DrawAt(batch);
+                EnemyDrawer.DrawThisTypeAt(batch, enemy.currentPos, enemy.type);
             }
         }
 
@@ -115,7 +115,7 @@ namespace BPO.Minijam32.Level
             }
 
             //Enemy go places
-            var enemyDeadList = new List<Enemy> { };
+            var enemyDeadList = new List<EnemyAI> { };
             foreach (var enemy in enemies)
             {
                 //Update AI
@@ -198,16 +198,16 @@ namespace BPO.Minijam32.Level
             PlayerDataManager.ResetBeforeNewLevel(this.currentPlayerDefaultLocation);
 
             //Placeholder enemy data: later be like "enum_int pos_X pos_Y" in additional level file
-            this.enemies = new List<Enemy> {};
+            this.enemies = new List<EnemyAI> {};
             var enemyFile = File.ReadAllLines(String.Format("Code/Level/Layouts/level{0}.enemydata", level));
             for (int i = 1; i < enemyFile.Length; i++) //first line for help
             {
                 var nums = enemyFile[i].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
                 this.enemies.Add
                 (
-                    new Enemy
+                    new EnemyAI
                     (
-                        (Enemy.Type)Convert.ToInt32(nums[0]),
+                        (EnemyAI.Type)Convert.ToInt32(nums[0]),
                         new Point(Convert.ToInt32(nums[1]), Convert.ToInt32(nums[2]))
                     )
                 );

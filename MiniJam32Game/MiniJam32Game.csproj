@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Code\GraphicsBase\Animator.cs" />
     <Compile Include="Code\GUI\Level\InfoDrawer.cs" />
-    <Compile Include="Code\Level\Enemies\Enemy.cs" />
+    <Compile Include="Code\Level\Enemies\EnemyAI.cs" />
     <Compile Include="Code\Level\Enemies\EnemyDrawer.cs" />
     <Compile Include="Code\Level\LevelData.cs" />
     <Compile Include="Code\Music\VoicePlayer.cs" />
