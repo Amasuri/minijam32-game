@@ -119,6 +119,7 @@ namespace Amasuri.Reusable.Graphics
             }
             else if (screenState == ScreenState.Playing)
             {
+                PlayerController.UpdateMovement(game, _key, _oldKey);
             }
             else if (screenState == ScreenState.DeadGameOver)
             {

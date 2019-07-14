@@ -25,9 +25,10 @@ namespace BPO.Minijam32.Player
         private static KeyboardState keyState;
         private static KeyboardState oldKeyState;
 
-        static public void UpdateMovement(Minijam32 game)
+        static public void UpdateMovement(Minijam32 game, KeyboardState keys, KeyboardState oldKeys)
         {
-            keyState = Keyboard.GetState();
+            keyState = keys;
+            oldKeyState = oldKeys;
 
             //On death, no controls
             if (PlayerDataManager.isDead)
@@ -67,8 +68,6 @@ namespace BPO.Minijam32.Player
 
             if (OneKeyPress( keyBomb ))
                 game.levelData.TryPlantBombAt(PlayerDataManager.tilePosition);
-
-            oldKeyState = keyState;
         }
 
         static private bool OneKeyPress(Keys key)

@@ -89,7 +89,6 @@ namespace BPO.Minijam32
 
             if (this.screenPool.screenState == ScreenPool.ScreenState.Playing)
             {
-                PlayerController.UpdateMovement(this);
                 this.levelData.Update(this);
                 PlayerDataManager.Update();
                 EnemyDrawer.UpdateTicks(Minijam32.DeltaUpdate);
