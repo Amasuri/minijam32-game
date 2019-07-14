@@ -1,4 +1,5 @@
-﻿using BPO.Minijam32.Level;
+﻿using System;
+using BPO.Minijam32.Level;
 using BPO.Minijam32.Level.Tile;
 using Microsoft.Xna.Framework;
 
@@ -63,6 +64,12 @@ namespace BPO.Minijam32.Player
             }
 
             PlayerDrawer.NotifyAboutSuccessfulMoving();
+        }
+
+        static internal void ResetBeforeNewLevel(Point newPlayerStartLocation)
+        {
+            tilePosition = newPlayerStartLocation;
+            currentInvis = 0f;
         }
     }
 }

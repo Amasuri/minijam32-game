@@ -25,9 +25,13 @@ namespace BPO.Minijam32.Level
         private const float bombFuseTimerInMs = 3000f;
         private const int maxBombCount = 4;
 
+        private const int maxLevelId = 2;
+        private int currentLevelId;
+
         public LevelData(Minijam32 game)
         {
-            this.ReInitializeLevelData(level: 1);
+            currentLevelId = 1;
+            this.ReInitializeLevelData(level: currentLevelId);
         }
 
         public void DrawBelow(Minijam32 game, SpriteBatch batch)
@@ -163,6 +167,7 @@ namespace BPO.Minijam32.Level
             file = File.ReadAllLines(String.Format("Code/Level/Layouts/level{0}.extradata", level));
             var plLocData = file[0].Replace("hero pos: ", "").Split( new string[]{ " " }, StringSplitOptions.RemoveEmptyEntries);
             this.currentPlayerDefaultLocation = new Point(Convert.ToInt32( plLocData[0] ), Convert.ToInt32 ( plLocData[1] ));
+            PlayerDataManager.ResetBeforeNewLevel(this.currentPlayerDefaultLocation);
 
             //Placeholder enemy data: later be like "enum_int pos_X pos_Y" in additional level file
             this.enemies = new List<Enemy> {};
