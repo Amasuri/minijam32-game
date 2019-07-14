@@ -25,6 +25,8 @@ namespace BPO.Minijam32.Level
         public List<EnemyAI> enemies { get; private set; }
         public Point TeleportPoint { get; private set; }
         public bool RedPlatePressed { get; private set; }
+        public bool YellowPlatePressed { get; private set; }
+        public bool BluePlatePressed { get; private set; }
 
         private List<Point> healDrops;
 
@@ -107,12 +109,24 @@ namespace BPO.Minijam32.Level
 
             //Update logic for colored plates
             RedPlatePressed = false;
+            YellowPlatePressed = false;
+            BluePlatePressed = false;
             for (int x = 0; x < tileGrid.GetLength(0); x++)
                 for (int y = 0; y < tileGrid.GetLength(1); y++)
                 {
                     if (tileGrid[x, y].type == TileData.Type.ButtonRed && new Point(x, y) == PlayerDataManager.tilePosition)
                     {
                         RedPlatePressed = true;
+                        tileGrid[x, y].PressPlate();
+                    }
+                    if (tileGrid[x, y].type == TileData.Type.ButtonBlue && new Point(x, y) == PlayerDataManager.tilePosition)
+                    {
+                        BluePlatePressed = true;
+                        tileGrid[x, y].PressPlate();
+                    }
+                    if (tileGrid[x, y].type == TileData.Type.ButtonYellow && new Point(x, y) == PlayerDataManager.tilePosition)
+                    {
+                        YellowPlatePressed = true;
                         tileGrid[x, y].PressPlate();
                     }
                 }
@@ -123,6 +137,16 @@ namespace BPO.Minijam32.Level
                     if (RedPlatePressed && tileGrid[x, y].type == TileData.Type.ColorWallRed)
                     {
                         tileGrid[x, y-1].RemoveColoredWallTopping();
+                        tileGrid[x, y].FlattenColoredWall();
+                    }
+                    if (BluePlatePressed && tileGrid[x, y].type == TileData.Type.ColorWallBlue)
+                    {
+                        tileGrid[x, y - 1].RemoveColoredWallTopping();
+                        tileGrid[x, y].FlattenColoredWall();
+                    }
+                    if (YellowPlatePressed && tileGrid[x, y].type == TileData.Type.ColorWallYellow)
+                    {
+                        tileGrid[x, y - 1].RemoveColoredWallTopping();
                         tileGrid[x, y].FlattenColoredWall();
                     }
                 }
