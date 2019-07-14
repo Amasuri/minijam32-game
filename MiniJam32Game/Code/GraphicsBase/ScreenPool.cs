@@ -45,7 +45,7 @@ namespace Amasuri.Reusable.Graphics
                 game.levelData.DrawBelow(game, batch);
                 PlayerDrawer.DrawCurrentState(batch, PlayerDataManager.tilePosition);
                 game.levelData.DrawAbove(game, batch);
-                Animator.DrawFiniteFieldAnimations(batch);
+                Animator.DrawFieldAnimations(batch);
 
                 InfoDrawer.Draw(batch);
             }

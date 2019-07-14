@@ -14,13 +14,18 @@ namespace BPO.Minijam32.GraphicsBase
     {
         static private List<Animation> finiteFieldAnimations;
 
+        static private Dictionary<Point, Animation> heartAnimations;
+
         static private Texture2D bombSheet;
+        static private Texture2D heartSheet;
 
         static public void InitAssets(Minijam32 game)
         {
             bombSheet = game.Content.Load<Texture2D>("res/tile/exp");
+            heartSheet = game.Content.Load<Texture2D>("res/tile/heart");
 
             finiteFieldAnimations = new List<Animation> { };
+            heartAnimations = new Dictionary <Point, Animation> { };
         }
 
         static public void NewBombAnimation(Point location)
@@ -36,11 +41,38 @@ namespace BPO.Minijam32.GraphicsBase
             finiteFieldAnimations.Add( newAnim );
         }
 
-        static public void DrawFiniteFieldAnimations(SpriteBatch batch)
+        static public void AddHeartAnimation(Point location)
+        {
+            if (heartAnimations.ContainsKey(location))
+                return;
+
+            Animation newAnim = new Animation(
+                null, "", 16, Minijam32.Scale, 200,
+                x: (int)(location.X * TileData.ScaledTileSize.X),
+                y: (int)(location.Y * TileData.ScaledTileSize.Y),
+                sheet: heartSheet);
+
+            newAnim.EnableDrawing(isALoop: true);
+
+            heartAnimations.Add(location, newAnim);
+        }
+
+        static public void RemoveHeart(Point location)
+        {
+            if (heartAnimations.ContainsKey(location))
+                heartAnimations.Remove(location);
+        }
+
+        static public void DrawFieldAnimations(SpriteBatch batch)
         {
             foreach (var animation in finiteFieldAnimations)
             {
                 animation.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw);
+            }
+
+            foreach (var animation in heartAnimations)
+            {
+                animation.Value.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw);
             }
         }
     }

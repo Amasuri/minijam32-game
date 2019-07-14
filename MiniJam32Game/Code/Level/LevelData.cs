@@ -79,12 +79,6 @@ namespace BPO.Minijam32.Level
             {
                 EnemyDrawer.DrawThisTypeAt(batch, enemy);
             }
-
-            //Heal points
-            foreach (var healPoint in this.healDrops)
-            {
-                TileDrawer.DrawTileAt(batch, TileData.Type.ButtonRed, healPoint);
-            }
         }
 
         public void DrawAbove(Minijam32 game, SpriteBatch batch)
@@ -131,6 +125,7 @@ namespace BPO.Minijam32.Level
                     }
                 }
 
+            //Then it's walls:
             for (int x = 0; x < tileGrid.GetLength(0); x++)
                 for (int y = 0; y < tileGrid.GetLength(1); y++)
                 {
@@ -204,6 +199,7 @@ namespace BPO.Minijam32.Level
                 {
                     PlayerDataManager.Heal();
                     removeHealDrops.Add(healPoint);
+                    Animator.RemoveHeart(healPoint);
                 }
             }
 
@@ -220,7 +216,10 @@ namespace BPO.Minijam32.Level
             {
                 //On each dying enemy, there's a slight chance of spawning heal pts
                 if (Minijam32.Rand.Next(100) <= enemyHealthDropChance)
+                {
                     this.healDrops.Add(enemy.currentPos);
+                    Animator.AddHeartAnimation(enemy.currentPos);
+                }
 
                 this.enemies.Remove(enemy);
             }
