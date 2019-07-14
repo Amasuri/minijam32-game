@@ -170,6 +170,12 @@
     <None Include="Code\Level\Layouts\level5.leveldata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Code\Level\Layouts\level7.enemydata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Code\Level\Layouts\level7.extradata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Code\Level\Layouts\level6.enemydata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -177,6 +183,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Code\Level\Layouts\level6.leveldata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Code\Level\Layouts\level7.leveldata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Code\Level\Layouts\level8.enemydata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Code\Level\Layouts\level8.extradata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Code\Level\Layouts\level8.leveldata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

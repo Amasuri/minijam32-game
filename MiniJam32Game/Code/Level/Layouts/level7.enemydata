@@ -1,0 +1,5 @@
+﻿type enum | starting at X | starting at Y || type 0 is bad, type 1 is square, etc
+0 16 3
+0 16 4
+0 5 5
+0 5 7
