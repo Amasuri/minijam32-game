@@ -136,7 +136,7 @@ namespace BPO.Minijam32.Level
                 //Check if enemy is at any exploding bombs
                 foreach (var location in bombsDeleteLocations)
                 {
-                    if ((enemy.currentPos - location).ToVector2().Length() < 2)
+                    if ((enemy.currentPos - location).ToVector2().Length() <= 1)
                         enemy.Damage();
                 }
 
@@ -164,7 +164,7 @@ namespace BPO.Minijam32.Level
             foreach (var location in bombsDeleteLocations)
             {
                 //To save cycles, we're checking for self-harm there for each explosion
-                if ((PlayerDataManager.tilePosition - location).ToVector2().Length() < 2)
+                if ((PlayerDataManager.tilePosition - location).ToVector2().Length() <= 1)
                     PlayerDataManager.Damage();
 
                 this.plantedBombs.Remove(location);
