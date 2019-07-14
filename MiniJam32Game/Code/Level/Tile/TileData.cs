@@ -1,4 +1,5 @@
 ﻿using Amasuri.Reusable.Graphics;
+using BPO.Minijam32.Music;
 using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using System;
@@ -143,6 +144,8 @@ namespace BPO.Minijam32.Level.Tile
             }
 
             this.type = Type.FloorDirtLight;
+
+            SoundPlayer.PlaySound(SoundPlayer.Type.RockCrumb);
         }
 
         public void PressPlate()

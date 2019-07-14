@@ -39,8 +39,13 @@ namespace BPO.Minijam32.Player
             if (currentInvis >= 0f)
                 return;
 
+            if (currentHP <= 0)
+                return;
+
             currentHP -= 1;
             currentInvis = maxInvis;
+
+            SoundPlayer.PlaySound(SoundPlayer.Type.HurtPlayer);
         }
 
         static public void GetCoin()
