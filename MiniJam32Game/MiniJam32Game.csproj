@@ -169,6 +169,15 @@
     <None Include="Code\Level\Layouts\level5.leveldata">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Code\Level\Layouts\level6.enemydata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Code\Level\Layouts\level6.extradata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Code\Level\Layouts\level6.leveldata">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Code\Level\Layouts\last_level_id.txt">
