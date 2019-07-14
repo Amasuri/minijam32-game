@@ -132,7 +132,7 @@ namespace BPO.Minijam32.Level.Tile
                 PlayerDataManager.GetCoin();
             }
 
-            this.type = Type.FloorDirtMediumPlain;
+            this.type = Type.FloorDirtLight;
         }
 
         /// <summary>
@@ -141,7 +141,11 @@ namespace BPO.Minijam32.Level.Tile
         public static bool IsSolid(Type type)
         {
             return
-                (int)type >= (int)Type.BombOne && (int)type <= (int)Type.WallBricksTopHighCornerRight || IsDestructable(type) || IsWater(type);
+                (int)type >= (int)Type.BombOne && (int)type <= (int)Type.WallBricksTopHighCornerRight ||
+                IsDestructable(type) ||
+                IsWater(type) ||
+                type == Type.FloorDirtMediumPlain ||
+                type == Type.FloorDirtDark;
         }
 
         /// <summary>
