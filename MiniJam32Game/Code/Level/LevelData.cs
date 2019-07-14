@@ -35,7 +35,7 @@ namespace BPO.Minijam32.Level
 
         private readonly int maxLevelId;
         private const int enemyHealthDropChance = 33;
-        private int currentLevelId;
+        public int currentLevelId { get; private set; }
 
         public LevelData(Minijam32 game)
         {

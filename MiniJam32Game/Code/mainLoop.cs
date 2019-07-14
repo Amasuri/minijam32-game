@@ -95,6 +95,8 @@ namespace BPO.Minijam32
                 EnemyDrawer.UpdateTicks(Minijam32.DeltaUpdate);
             }
 
+            musicPlayer.Update(this);
+
             base.Update(gameTime);
         }
 
