@@ -73,6 +73,30 @@
 /processorParam:TextureFormat=Color
 /build:../../res/image/gui/numbers.png;res/gui/numbers.png
 
+#begin ../../res/image/gui/sorry_nothing.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../res/image/gui/sorry_nothing.png;res/gui/sorry_nothing.png
+
+#begin ../../res/image/gui/u_ded.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../res/image/gui/u_ded.png;res/gui/u_ded.png
+
 #begin ../../res/image/mob/bat.png
 /importer:TextureImporter
 /processor:TextureProcessor

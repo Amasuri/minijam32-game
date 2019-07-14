@@ -39,7 +39,8 @@ namespace BPO.Minijam32.GUI.Level
             Vector2 offset = Vector2.Zero;
             if(centered)
             {
-                offset = new Vector2(Minijam32.ScaledWidth - 6 * 2 * Minijam32.Scale, Minijam32.ScaledHeight - 8 * Minijam32.Scale) / 2;
+                //offset = new Vector2(Minijam32.ScaledWidth - 6 * 2 * Minijam32.Scale, Minijam32.ScaledHeight - 8 * Minijam32.Scale) / 2;
+                offset = new Vector2(183, 110) * Minijam32.Scale;
             }
 
             int coinsLessTens = PlayerDataManager.coins % 10;

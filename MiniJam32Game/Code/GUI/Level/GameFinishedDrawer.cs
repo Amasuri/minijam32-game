@@ -12,11 +12,13 @@ namespace BPO.Minijam32.GUI.Level
     public class GameFinishedDrawer
     {
         private Pixel screen;
+        private Texture2D sorryNothing;
         private int fadeOut;
 
         public GameFinishedDrawer(Minijam32 game)
         {
             screen = new Pixel(game.GraphicsDevice);
+            sorryNothing = game.Content.Load<Texture2D>("res/gui/sorry_nothing");
             fadeOut = 0;
         }
 
@@ -31,6 +33,7 @@ namespace BPO.Minijam32.GUI.Level
             else
             {
                 game.screenPool.menuGui.DrawBackground(batch);
+                batch.Draw(sorryNothing, Vector2.Zero, null, Color.White, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
                 InfoDrawer.DrawCoinsGui(batch, centered: true);
             }
         }
