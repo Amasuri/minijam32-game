@@ -25,6 +25,18 @@
 /processorParam:TextureFormat=Color
 /build:../../res/image/gui/hp_bar.png;res/gui/hp_bar.png
 
+#begin ../../res/image/gui/menu.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../res/image/gui/menu.png;res/gui/menu.png
+
 #begin ../../res/image/gui/menu_background.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -36,6 +48,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../../res/image/gui/menu_background.png;res/gui/menu_background.png
+
+#begin ../../res/image/gui/menu_selected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../../res/image/gui/menu_selected.png;res/gui/menu_selected.png
 
 #begin ../../res/image/gui/numbers.png
 /importer:TextureImporter

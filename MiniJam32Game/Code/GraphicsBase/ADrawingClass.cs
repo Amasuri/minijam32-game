@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using BPO.Minijam32;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,9 +10,9 @@ namespace Amasuri.Reusable.Graphics
     /// </summary>
     abstract public class ADrawingClass
     {
-        abstract public void Draw(Game game, SpriteBatch spriteBatch);
+        abstract public void Draw(Minijam32 game, SpriteBatch spriteBatch);
 
-        abstract public void Update(Game game, MouseState mouse, MouseState oldMouse, KeyboardState keys, KeyboardState oldKeys);
+        abstract public void Update(Minijam32 game, MouseState mouse, MouseState oldMouse, KeyboardState keys, KeyboardState oldKeys);
 
         /// <summary>
         /// Wrapper method for quicker draw.

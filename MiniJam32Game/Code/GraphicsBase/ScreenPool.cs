@@ -1,4 +1,5 @@
 ﻿using BPO.Minijam32;
+using BPO.Minijam32.Code.GUI;
 using BPO.Minijam32.GraphicsBase;
 using BPO.Minijam32.GUI.Level;
 using BPO.Minijam32.Music;
@@ -33,16 +34,18 @@ namespace Amasuri.Reusable.Graphics
 
         private NewLevelDrawer newLevelDrawer;
         private GameFinishedDrawer finishedGameDrawer;
+        private MenuGui menuGui;
 
         public ScreenPool(Minijam32 game)
         {
-            this.screenState = ScreenState.Playing;
+            this.screenState = ScreenState.Start;
             this.backgroundDirtColor = new Color(104, 76, 60);
 
             currentNewLevelDelayLeft = 0f;
 
             newLevelDrawer = new NewLevelDrawer(game);
             finishedGameDrawer = new GameFinishedDrawer(game);
+            menuGui = new MenuGui(game);
         }
 
         /// <summary>
@@ -55,6 +58,7 @@ namespace Amasuri.Reusable.Graphics
 
             if (screenState == ScreenState.Start)
             {
+                this.menuGui.Draw(game, batch);
             }
             else if (screenState == ScreenState.Playing)
             {
@@ -111,6 +115,7 @@ namespace Amasuri.Reusable.Graphics
             //code
             if (screenState == ScreenState.Start)
             {
+                menuGui.Update(game, _mouse, _oldMouse, _key, _oldKey);
             }
             else if (screenState == ScreenState.Playing)
             {
@@ -144,6 +149,11 @@ namespace Amasuri.Reusable.Graphics
         private void SetStateToDeath()
         {
             screenState = ScreenState.DeadGameOver;
+        }
+
+        public void TriggerGameStart()
+        {
+            screenState = ScreenState.Playing;
         }
     }
 }
