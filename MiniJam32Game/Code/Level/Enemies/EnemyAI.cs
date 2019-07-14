@@ -23,7 +23,7 @@ namespace BPO.Minijam32.Level.Enemies
             SomeOtherMook,
         }
 
-        private const int defaultWaitTime = 500;
+        private const int defaultWaitTime = 1000;
         private float currentWaitTime;
 
         public Type type { get; private set; }
@@ -31,12 +31,18 @@ namespace BPO.Minijam32.Level.Enemies
         public Point currentPos { get; private set; }
         public bool isDead => currentHp <= 0;
 
+        /// <summary>
+        /// Internal because for "Enemy" assembly only: only the drawer needs to know this
+        /// </summary>
+        internal Point lastMove;
+
         public EnemyAI(Type type, Point startingPos)
         {
             this.type = type;
             this.currentHp = 2;
             this.currentPos = startingPos;
             this.currentWaitTime = defaultWaitTime;
+            this.lastMove = new Point(0, 0);
         }
 
         public void Update(Minijam32 game)
@@ -71,6 +77,7 @@ namespace BPO.Minijam32.Level.Enemies
                 {
                     hasGeneratedPos = true;
                     this.currentPos += move;
+                    this.lastMove = move;
                 }
             }
         }
@@ -86,6 +93,14 @@ namespace BPO.Minijam32.Level.Enemies
         public void Damage()
         {
             this.currentHp -= 1;
+        }
+
+        /// <summary>
+        /// Internal because for "Enemy" assembly only: only the drawer needs to know this
+        /// </summary>
+        internal float TimeSinceLastMove()
+        {
+            return defaultWaitTime - this.currentWaitTime;
         }
     }
 }

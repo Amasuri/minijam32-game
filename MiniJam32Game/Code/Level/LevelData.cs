@@ -69,7 +69,7 @@ namespace BPO.Minijam32.Level
             //Enemies
             foreach (var enemy in this.enemies)
             {
-                EnemyDrawer.DrawThisTypeAt(batch, enemy.currentPos, enemy.type);
+                EnemyDrawer.DrawThisTypeAt(batch, enemy);
             }
         }
 
