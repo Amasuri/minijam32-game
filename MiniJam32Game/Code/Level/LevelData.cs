@@ -1,4 +1,5 @@
 ﻿using BPO.Minijam32.GraphicsBase;
+using BPO.Minijam32.Level.Enemies;
 using BPO.Minijam32.Level.Tile;
 using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;

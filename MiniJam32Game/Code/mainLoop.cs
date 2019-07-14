@@ -2,6 +2,7 @@
 using BPO.Minijam32.GraphicsBase;
 using BPO.Minijam32.GUI.Level;
 using BPO.Minijam32.Level;
+using BPO.Minijam32.Level.Enemies;
 using BPO.Minijam32.Level.Tile;
 using BPO.Minijam32.Music;
 using BPO.Minijam32.Player;
@@ -66,6 +67,7 @@ namespace BPO.Minijam32
             TileDrawer.InitAssets(this);
             PlayerDrawer.InitAssets(this);
             Enemy.LoadAssets(this);
+            EnemyDrawer.LoadAssets(this);
 
             screenPool = new ScreenPool(this);
 

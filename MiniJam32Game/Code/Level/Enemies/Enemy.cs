@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BPO.Minijam32.Level
+namespace BPO.Minijam32.Level.Enemies
 {
     /// <summary>
     /// The only thing in difference between enemies is their looks, right?
