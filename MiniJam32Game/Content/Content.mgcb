@@ -181,3 +181,9 @@
 /processorParam:TextureFormat=Color
 /build:../../res/image/tile/general.png;res/tile/general.png
 
+#begin ../../res/sound/explosion0.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/explosion0.ogg;res/sound/explosion0.ogg
+
