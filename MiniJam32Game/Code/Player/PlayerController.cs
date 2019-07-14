@@ -28,16 +28,16 @@ namespace BPO.Minijam32.Player
             if (PlayerDataManager.isDead)
                 return;
 
-            if (OneKeyPress(keyUp))
-                PlayerDataManager.Move(game.levelData, new Point(0, -1));
-            else if (OneKeyPress(keyDown))
-                PlayerDataManager.Move(game.levelData, new Point(0, +1));
-            else if (OneKeyPress(keyLeft))
-                PlayerDataManager.Move(game.levelData, new Point(-1, 0));
-            else if (OneKeyPress(keyRight))
-                PlayerDataManager.Move(game.levelData, new Point(1, 0));
+            if (keyState.IsKeyDown( keyUp ))
+                PlayerDataManager.TryMove(game.levelData, new Point(0, -1));
+            else if (keyState.IsKeyDown(keyDown))
+                PlayerDataManager.TryMove(game.levelData, new Point(0, +1));
+            else if (keyState.IsKeyDown(keyLeft))
+                PlayerDataManager.TryMove(game.levelData, new Point(-1, 0));
+            else if (keyState.IsKeyDown(keyRight))
+                PlayerDataManager.TryMove(game.levelData, new Point(1, 0));
 
-            if (keyState.IsKeyDown( keyBomb ))
+            if (OneKeyPress( keyBomb ))
                 game.levelData.TryPlantBombAt(PlayerDataManager.tilePosition);
 
             oldKeyState = keyState;

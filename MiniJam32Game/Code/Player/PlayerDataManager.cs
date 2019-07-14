@@ -18,6 +18,9 @@ namespace BPO.Minijam32.Player
         static private float currentInvis;
         private const float maxInvis = 1000f;
 
+        private static float currentMoveCoolDown;
+        private const float maxMoveCoolDown = 400f;
+
         static public int coins { get; private set; }
 
         static public Point tilePosition { get; private set; }
@@ -48,13 +51,23 @@ namespace BPO.Minijam32.Player
         static public void Update()
         {
             currentInvis -= Minijam32.DeltaUpdate;
+
+            if (currentMoveCoolDown >= 0)
+            {
+                currentMoveCoolDown -= Minijam32.DeltaUpdate;
+            }
         }
 
         /// <summary>
         /// Is internal because only PlayerController can do this.
         /// </summary>
-        static internal void Move(LevelData level, Point move)
+        static internal void TryMove(LevelData level, Point move)
         {
+            if(currentMoveCoolDown >= 0)
+            {
+                return;
+            }
+
             tilePosition += move;
             lastMove = move;
 
@@ -64,11 +77,13 @@ namespace BPO.Minijam32.Player
                 return;
             }
 
+            currentMoveCoolDown = maxMoveCoolDown;
             PlayerDrawer.NotifyAboutSuccessfulMoving();
         }
 
         static internal void ResetBeforeNewLevel(Point newPlayerStartLocation)
         {
+            currentMoveCoolDown = 0f;
             tilePosition = newPlayerStartLocation;
             currentInvis = 0f;
         }
