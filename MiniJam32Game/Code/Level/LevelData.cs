@@ -165,11 +165,20 @@ namespace BPO.Minijam32.Level
             this.currentPlayerDefaultLocation = new Point(Convert.ToInt32( plLocData[0] ), Convert.ToInt32 ( plLocData[1] ));
 
             //Placeholder enemy data: later be like "enum_int pos_X pos_Y" in additional level file
-            this.enemies = new List<Enemy>
+            this.enemies = new List<Enemy> {};
+            var enemyFile = File.ReadAllLines(String.Format("Code/Level/Layouts/level{0}.enemydata", level));
+            for (int i = 1; i < enemyFile.Length; i++) //first line for help
             {
-                new Enemy(Enemy.Type.SomeMook, new Point(3, 3)),
-                new Enemy(Enemy.Type.SomeOtherMook, new Point(5, 10)),
-            };
+                var nums = enemyFile[i].Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                this.enemies.Add
+                (
+                    new Enemy
+                    (
+                        (Enemy.Type)Convert.ToInt32(nums[0]),
+                        new Point(Convert.ToInt32(nums[1]), Convert.ToInt32(nums[2]))
+                    )
+                );
+            }
 
             //Reset bomb data
             this.plantedBombs = new Dictionary<Point, float> { };
