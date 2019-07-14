@@ -30,12 +30,13 @@ namespace BPO.Minijam32.Level
         private const float bombFuseTimerInMs = 3000f;
         private const int maxBombCount = 4;
 
-        private const int maxLevelId = 2;
+        private readonly int maxLevelId;
         private const int enemyHealthDropChance = 33;
         private int currentLevelId;
 
         public LevelData(Minijam32 game)
         {
+            maxLevelId = Convert.ToInt32(File.ReadAllLines("Code/Level/Layouts/last_level_id.txt")[0]);
             currentLevelId = 1;
             this.ReInitializeLevelData(level: currentLevelId);
         }
