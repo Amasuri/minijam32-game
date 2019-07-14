@@ -99,6 +99,12 @@ namespace BPO.Minijam32.Level.Tile
 
             //58: Rabbit hole
             NewLevelHole = 58,
+
+            //59-62: Half-transparent & passable wall toppings
+            PassableWallRoofComplete = 59,
+            PassableWallRoofLeft = 60,
+            PassableWallRoofMiddle = 61,
+            PassableWallRoofRight = 62,
         }
 
         public Type type { get; private set; }
@@ -148,14 +154,12 @@ namespace BPO.Minijam32.Level.Tile
         }
 
         /// <summary>
-        /// For tiles like walls that have a bit of a head above it.
-        /// Which is drawn in another cycle above player.
+        /// For drawn-on-top-of-player roof-like tiles
         /// </summary>
-        public static bool HasBlockAboveIt(Type type)
+        public static bool IsUpperRoof(Type type)
         {
             return
-                ((int)type >= (int)Type.WallBricksContourFinished && (int)type <= (int)Type.WallBricksRightFinished) ||
-                ((int)type >= (int)Type.ColorWallBlue && (int)type <= (int)Type.ColorWallYellow);
+                ((int)type >= (int)Type.PassableWallRoofComplete && (int)type <= (int)Type.PassableWallRoofRight);
         }
 
         /// <summary>
