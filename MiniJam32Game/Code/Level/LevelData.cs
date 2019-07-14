@@ -35,13 +35,16 @@ namespace BPO.Minijam32.Level
 
         private readonly int maxLevelId;
         private const int enemyHealthDropChance = 33;
+
         public int currentLevelId { get; private set; }
+        public bool hasCompletedLastLevel { get; private set; }
 
         public LevelData(Minijam32 game)
         {
             maxLevelId = Convert.ToInt32(File.ReadAllLines("Code/Level/Layouts/last_level_id.txt")[0]);
             currentLevelId = 1;
             this.ReInitializeLevelData(level: currentLevelId);
+            hasCompletedLastLevel = false;
         }
 
         public void DrawBelow(Minijam32 game, SpriteBatch batch)
@@ -96,7 +99,11 @@ namespace BPO.Minijam32.Level
             if(PlayerDataManager.tilePosition == this.TeleportPoint)
             {
                 if (currentLevelId >= maxLevelId)
+                {
+                    hasCompletedLastLevel = true;
                     return;
+                }
+
                 currentLevelId++;
                 this.ReInitializeLevelData(currentLevelId);
                 game.screenPool.StartNewLevelDelay(game.musicPlayer);

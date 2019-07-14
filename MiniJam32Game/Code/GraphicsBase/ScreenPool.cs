@@ -15,7 +15,8 @@ namespace Amasuri.Reusable.Graphics
     public class ScreenPool : IDrawArranger
     {
         public enum ScreenState { Start, Playing, DeadGameOver,
-            SwitchingLevel
+            SwitchingLevel,
+            FinishedGame
         }
         public ScreenState screenState { get; private set; }
 
@@ -31,6 +32,7 @@ namespace Amasuri.Reusable.Graphics
         public bool IsHavingNewLevelOverlay => ( currentNewLevelDelayLeft >= 0f );
 
         private NewLevelDrawer newLevelDrawer;
+        private GameFinishedDrawer finishedGameDrawer;
 
         public ScreenPool(Minijam32 game)
         {
@@ -40,6 +42,7 @@ namespace Amasuri.Reusable.Graphics
             currentNewLevelDelayLeft = 0f;
 
             newLevelDrawer = new NewLevelDrawer(game);
+            finishedGameDrawer = new GameFinishedDrawer(game);
         }
 
         /// <summary>
@@ -60,12 +63,23 @@ namespace Amasuri.Reusable.Graphics
                     this.SetStateToDeath();
                 }
 
+                if(game.levelData.hasCompletedLastLevel)
+                {
+                    screenState = ScreenState.FinishedGame;
+                    game.musicPlayer.Mute();
+                    SoundPlayer.PlaySound(SoundPlayer.Type.NextLevelLick);
+                }
+
                 game.levelData.DrawBelow(game, batch);
                 PlayerDrawer.DrawCurrentState(batch, PlayerDataManager.tilePosition);
                 game.levelData.DrawAbove(game, batch);
                 Animator.DrawFieldAnimations(batch);
 
                 InfoDrawer.Draw(batch);
+            }
+            else if (screenState == ScreenState.SwitchingLevel)
+            {
+                this.newLevelDrawer.DrawNextLevelIntro(batch);
             }
             else if (screenState == ScreenState.DeadGameOver)
             {
@@ -76,9 +90,14 @@ namespace Amasuri.Reusable.Graphics
 
                 this.newLevelDrawer.DrawDeathScene(batch);
             }
-            else if (screenState == ScreenState.SwitchingLevel)
+            else if (screenState == ScreenState.FinishedGame)
             {
-                this.newLevelDrawer.DrawNextLevelIntro(batch);
+                game.levelData.DrawBelow(game, batch);
+                PlayerDrawer.DrawCurrentState(batch, PlayerDataManager.tilePosition);
+                game.levelData.DrawAbove(game, batch);
+                Animator.DrawFieldAnimations(batch);
+
+                this.finishedGameDrawer.DrawGameCompletedScene(batch);
             }
 
             batch.End();

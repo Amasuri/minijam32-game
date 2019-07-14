@@ -34,7 +34,7 @@ namespace BPO.Minijam32.GUI.Level
             DrawCoinsGui(batch);
         }
 
-        private static void DrawCoinsGui(SpriteBatch batch)
+        public static void DrawCoinsGui(SpriteBatch batch)
         {
             int coinsLessTens = PlayerDataManager.coins % 10;
             int coinsTens = PlayerDataManager.coins / 10;
