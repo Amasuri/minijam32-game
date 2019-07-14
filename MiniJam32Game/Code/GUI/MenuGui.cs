@@ -35,11 +35,7 @@ namespace BPO.Minijam32.Code.GUI
 
         public override void Draw(Minijam32 game, SpriteBatch spriteBatch)
         {
-            for (int x = 0; x < Minijam32.UnscaledWidth/menuBackground.Width+1; x++)
-                for (int y = 0; y < Minijam32.UnscaledHeight / menuBackground.Height+1; y++)
-                {
-                    this.DrawTexture(spriteBatch, this.menuBackground, new Vector2(x * Minijam32.Scale * menuBackground.Width, y * Minijam32.Scale * menuBackground.Height), Minijam32.Scale);
-                }
+            DrawBackground(spriteBatch);
 
             this.DrawTexture(spriteBatch, this.menuButtons, Vector2.Zero, Minijam32.Scale);
 
@@ -47,6 +43,15 @@ namespace BPO.Minijam32.Code.GUI
                 this.DrawTexture(spriteBatch, menuPressed, UnscaledPlayCoords * Minijam32.Scale, Minijam32.Scale);
             if (pressedButton == 1)
                 this.DrawTexture(spriteBatch, menuPressed, UnscaledExitCoords * Minijam32.Scale, Minijam32.Scale);
+        }
+
+        public void DrawBackground(SpriteBatch spriteBatch)
+        {
+            for (int x = 0; x < Minijam32.UnscaledWidth / menuBackground.Width + 1; x++)
+                for (int y = 0; y < Minijam32.UnscaledHeight / menuBackground.Height + 1; y++)
+                {
+                    this.DrawTexture(spriteBatch, this.menuBackground, new Vector2(x * Minijam32.Scale * menuBackground.Width, y * Minijam32.Scale * menuBackground.Height), Minijam32.Scale);
+                }
         }
 
         public override void Update(Minijam32 game, MouseState mouse, MouseState oldMouse, KeyboardState keys, KeyboardState oldKeys)

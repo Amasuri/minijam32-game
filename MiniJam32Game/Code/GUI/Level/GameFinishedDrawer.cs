@@ -20,7 +20,7 @@ namespace BPO.Minijam32.GUI.Level
             fadeOut = 0;
         }
 
-        public void DrawGameCompletedScene(SpriteBatch batch)
+        public void DrawGameCompletedScene(Minijam32 game, SpriteBatch batch)
         {
             screen.Draw(batch, new Color(21, 15, 10, fadeOut), Vector2.Zero, new Vector2(Minijam32.ScaledWidth, Minijam32.ScaledHeight));
 
@@ -30,6 +30,7 @@ namespace BPO.Minijam32.GUI.Level
             }
             else
             {
+                game.screenPool.menuGui.DrawBackground(batch);
                 InfoDrawer.DrawCoinsGui(batch, centered: true);
             }
         }

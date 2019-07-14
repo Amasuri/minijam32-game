@@ -34,7 +34,7 @@ namespace Amasuri.Reusable.Graphics
 
         private NewLevelDrawer newLevelDrawer;
         private GameFinishedDrawer finishedGameDrawer;
-        private MenuGui menuGui;
+        public MenuGui menuGui;
 
         public ScreenPool(Minijam32 game)
         {
@@ -101,7 +101,7 @@ namespace Amasuri.Reusable.Graphics
                 game.levelData.DrawAbove(game, batch);
                 Animator.DrawFieldAnimations(batch);
 
-                this.finishedGameDrawer.DrawGameCompletedScene(batch);
+                this.finishedGameDrawer.DrawGameCompletedScene(game, batch);
             }
 
             batch.End();
