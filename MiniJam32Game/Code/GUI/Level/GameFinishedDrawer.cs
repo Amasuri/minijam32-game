@@ -22,7 +22,7 @@ namespace BPO.Minijam32.GUI.Level
 
         public void DrawGameCompletedScene(SpriteBatch batch)
         {
-            screen.Draw(batch, new Color(0, 0, 0, fadeOut), Vector2.Zero, new Vector2(Minijam32.ScaledWidth, Minijam32.ScaledHeight));
+            screen.Draw(batch, new Color(21, 15, 10, fadeOut), Vector2.Zero, new Vector2(Minijam32.ScaledWidth, Minijam32.ScaledHeight));
 
             if (fadeOut < 255)
             {
