@@ -28,6 +28,7 @@ namespace BPO.Minijam32.Level.Enemies
 
         public Type type { get; private set; }
         public int currentHp { get; private set; }
+        private const int maxEnemyHp = 1;
         public Point currentPos { get; private set; }
         public bool isDead => currentHp <= 0;
 
@@ -39,7 +40,7 @@ namespace BPO.Minijam32.Level.Enemies
         public EnemyAI(Type type, Point startingPos)
         {
             this.type = type;
-            this.currentHp = 2;
+            this.currentHp = maxEnemyHp;
             this.currentPos = startingPos;
             this.currentWaitTime = defaultWaitTime;
             this.lastMove = new Point(0, 0);
