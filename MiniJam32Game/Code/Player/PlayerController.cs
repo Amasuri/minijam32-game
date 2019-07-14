@@ -37,6 +37,29 @@ namespace BPO.Minijam32.Player
             else if (OneKeyPress(keyRight))
                 PlayerDataManager.TryMove(game.levelData, new Point(1, 0));
 
+#if DEBUG
+            if (OneKeyPress(Keys.D1))
+                game.levelData.ReInitializeLevelData(1);
+            if (OneKeyPress(Keys.D2))
+                game.levelData.ReInitializeLevelData(2);
+            if (OneKeyPress(Keys.D3))
+                game.levelData.ReInitializeLevelData(3);
+            if (OneKeyPress(Keys.D4))
+                game.levelData.ReInitializeLevelData(4);
+            if (OneKeyPress(Keys.D5))
+                game.levelData.ReInitializeLevelData(5);
+            if (OneKeyPress(Keys.D6))
+                game.levelData.ReInitializeLevelData(6);
+            if (OneKeyPress(Keys.D7))
+                game.levelData.ReInitializeLevelData(7);
+            if (OneKeyPress(Keys.D8))
+                game.levelData.ReInitializeLevelData(8);
+            if (OneKeyPress(Keys.D9))
+                game.levelData.ReInitializeLevelData(9);
+            if (OneKeyPress(Keys.D0))
+                game.levelData.ReInitializeLevelData(10);
+#endif
+
             if (OneKeyPress( keyBomb ))
                 game.levelData.TryPlantBombAt(PlayerDataManager.tilePosition);
 

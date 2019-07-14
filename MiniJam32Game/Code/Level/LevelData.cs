@@ -265,7 +265,11 @@ namespace BPO.Minijam32.Level
             tileGrid[tileCoords.X, tileCoords.Y].Destroy();
         }
 
-        private void ReInitializeLevelData(int level)
+        /// <summary>
+        /// Should be PRIVATE, but for debugging is public.
+        /// Meaning: Don't use outside of LevelData class!
+        /// </summary>
+        public void ReInitializeLevelData(int level)
         {
             //All things tiles related
             var file = File.ReadAllLines(String.Format("Code/Level/Layouts/level{0}.leveldata", level));
