@@ -1,6 +1,7 @@
 ﻿using BPO.Minijam32.GraphicsBase;
 using BPO.Minijam32.Level.Enemies;
 using BPO.Minijam32.Level.Tile;
+using BPO.Minijam32.Music;
 using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -104,6 +105,7 @@ namespace BPO.Minijam32.Level
                     bombsDeleteLocations.Add(location);
 
                     Animator.NewBombAnimation(location - new Point(1, 1));
+                    SoundPlayer.PlaySound(SoundPlayer.Type.BombExplosion);
 
                     //TODO: boooooom tiles
                     this.tileGrid[location.X, location.Y].Destroy();
