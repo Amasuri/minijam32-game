@@ -15,6 +15,11 @@ namespace BPO.Minijam32.Player
         private const Keys keyLeft = Keys.A;
         private const Keys keyRight = Keys.D;
 
+        private const Keys keyUp_a = Keys.Up;
+        private const Keys keyDown_a = Keys.Down;
+        private const Keys keyLeft_a = Keys.Left;
+        private const Keys keyRight_a = Keys.Right;
+
         private const Keys keyBomb = Keys.Space;
 
         private static KeyboardState keyState;
@@ -28,13 +33,13 @@ namespace BPO.Minijam32.Player
             if (PlayerDataManager.isDead)
                 return;
 
-            if (OneKeyPress(keyUp ))
+            if (OneKeyPress(keyUp ) || OneKeyPress(keyUp_a))
                 PlayerDataManager.TryMove(game.levelData, new Point(0, -1));
-            else if (OneKeyPress(keyDown))
+            else if (OneKeyPress(keyDown) || OneKeyPress(keyDown_a))
                 PlayerDataManager.TryMove(game.levelData, new Point(0, +1));
-            else if (OneKeyPress(keyLeft))
+            else if (OneKeyPress(keyLeft) || OneKeyPress(keyLeft_a))
                 PlayerDataManager.TryMove(game.levelData, new Point(-1, 0));
-            else if (OneKeyPress(keyRight))
+            else if (OneKeyPress(keyRight) || OneKeyPress(keyRight_a))
                 PlayerDataManager.TryMove(game.levelData, new Point(1, 0));
 
 #if DEBUG
