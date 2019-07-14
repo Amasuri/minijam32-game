@@ -99,6 +99,7 @@ namespace BPO.Minijam32.Level
                     return;
                 currentLevelId++;
                 this.ReInitializeLevelData(currentLevelId);
+                game.screenPool.StartNewLevelDelay(game.musicPlayer);
             }
 
             //Update logic for colored plates

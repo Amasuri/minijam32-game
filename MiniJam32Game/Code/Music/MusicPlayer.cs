@@ -1,4 +1,5 @@
-﻿using BPO.Minijam32.Player;
+﻿using Amasuri.Reusable.Graphics;
+using BPO.Minijam32.Player;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
@@ -45,16 +46,31 @@ namespace BPO.Minijam32.Music
             {
                 isMuted = true;
                 MediaPlayer.Stop();
+
                 SoundPlayer.PlaySound(SoundPlayer.Type.GameOverLick);
             }
 
-            SongType shouldBePlaying = (SongType)(((game.levelData.currentLevelId-1) % 3));
-
-            if(shouldBePlaying != this.currentSong)
+            if (game.screenPool.screenState == ScreenPool.ScreenState.Playing)
             {
-                this.currentSong = shouldBePlaying;
-                MediaPlayer.Play(this.songs[this.currentSong]);
+                SongType shouldBePlaying = (SongType)(((game.levelData.currentLevelId - 1) % 3));
+
+                if (shouldBePlaying != this.currentSong)
+                {
+                    this.currentSong = shouldBePlaying;
+                    MediaPlayer.Play(this.songs[this.currentSong]);
+                }
             }
+        }
+
+        public void Unmute()
+        {
+            this.isMuted = false;
+        }
+
+        public void Mute()
+        {
+            this.isMuted = true;
+            MediaPlayer.Stop();
         }
     }
 }
