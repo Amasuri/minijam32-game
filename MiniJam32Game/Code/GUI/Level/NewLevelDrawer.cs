@@ -13,10 +13,12 @@ namespace BPO.Minijam32.GUI.Level
     {
         private Pixel screen;
         private int deathAlpha;
+        private Texture2D youDied;
 
         public NewLevelDrawer(Minijam32 game)
         {
             screen = new Pixel(game.GraphicsDevice);
+            youDied = game.Content.Load<Texture2D>("res/gui/u_ded");
             deathAlpha = 0;
         }
 
@@ -31,6 +33,8 @@ namespace BPO.Minijam32.GUI.Level
 
             if (deathAlpha < 255)
                 deathAlpha++;
+            else
+                batch.Draw(youDied, Vector2.Zero, null, Color.White, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
         }
     }
 }
