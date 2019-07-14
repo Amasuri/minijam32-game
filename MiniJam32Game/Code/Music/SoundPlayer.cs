@@ -16,6 +16,7 @@ namespace BPO.Minijam32.Music
         public enum Type
         {
             BombExplosion,
+            HealPlayer,
         }
 
         static private Dictionary<Type, SoundEffect> sounds;

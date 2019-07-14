@@ -1,6 +1,7 @@
 ﻿using System;
 using BPO.Minijam32.Level;
 using BPO.Minijam32.Level.Tile;
+using BPO.Minijam32.Music;
 using Microsoft.Xna.Framework;
 
 namespace BPO.Minijam32.Player
@@ -70,6 +71,12 @@ namespace BPO.Minijam32.Player
         {
             tilePosition = newPlayerStartLocation;
             currentInvis = 0f;
+        }
+
+        static public void Heal()
+        {
+            SoundPlayer.PlaySound(SoundPlayer.Type.HealPlayer);
+            currentHP++;
         }
     }
 }

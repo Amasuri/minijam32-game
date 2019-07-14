@@ -25,10 +25,13 @@ namespace BPO.Minijam32.Level
         public List<EnemyAI> enemies { get; private set; }
         public Point TeleportPoint { get; private set; }
 
+        private List<Point> healDrops;
+
         private const float bombFuseTimerInMs = 3000f;
         private const int maxBombCount = 4;
 
         private const int maxLevelId = 2;
+        private const int enemyHealthDropChance = 33;
         private int currentLevelId;
 
         public LevelData(Minijam32 game)
@@ -71,6 +74,12 @@ namespace BPO.Minijam32.Level
             foreach (var enemy in this.enemies)
             {
                 EnemyDrawer.DrawThisTypeAt(batch, enemy);
+            }
+
+            //Heal points
+            foreach (var healPoint in this.healDrops)
+            {
+                TileDrawer.DrawTileAt(batch, TileData.Type.ButtonRed, healPoint);
             }
         }
 
@@ -139,7 +148,18 @@ namespace BPO.Minijam32.Level
                     PlayerDataManager.Damage();
             }
 
-            //After we've done the job, let's remove the old shit
+            //Heal point heals player. Then disapperear
+            List<Point> removeHealDrops = new List<Point> { };
+            foreach (var healPoint in this.healDrops)
+            {
+                if(healPoint == PlayerDataManager.tilePosition)
+                {
+                    PlayerDataManager.Heal();
+                    removeHealDrops.Add(healPoint);
+                }
+            }
+
+            //After we've done the job, let's remove the old junk
             foreach (var location in bombsDeleteLocations)
             {
                 //To save cycles, we're checking for self-harm there for each explosion
@@ -150,7 +170,16 @@ namespace BPO.Minijam32.Level
             }
             foreach (var enemy in enemyDeadList)
             {
+                //On each dying enemy, there's a slight chance of spawning heal pts
+                if (Minijam32.Rand.Next(100) <= enemyHealthDropChance)
+                    this.healDrops.Add(enemy.currentPos);
+
                 this.enemies.Remove(enemy);
+            }
+            foreach (var point in removeHealDrops)
+            {
+                if (healDrops.Contains(point))
+                    healDrops.Remove(point);
             }
         }
 
@@ -220,6 +249,9 @@ namespace BPO.Minijam32.Level
 
             //New teleport point
             this.FindAndSetNextTeleportPoint();
+
+            //Reset heal drops
+            this.healDrops = new List<Point> { };
         }
 
         public void TryPlantBombAt(Point tilePosition)
