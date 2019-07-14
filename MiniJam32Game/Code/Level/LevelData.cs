@@ -184,7 +184,10 @@ namespace BPO.Minijam32.Level
 
                 //If enemy is dead, mark it
                 if (enemy.isDead)
+                {
                     enemyDeadList.Add(enemy);
+                    SoundPlayer.PlaySound(SoundPlayer.Type.BatDead);
+                }
 
                 //Check if enemy is touching the hero
                 if (enemy.currentPos == PlayerDataManager.tilePosition)
