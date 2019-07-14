@@ -145,6 +145,41 @@ namespace BPO.Minijam32.Level.Tile
             this.type = Type.FloorDirtLight;
         }
 
+        public void PressPlate()
+        {
+            if (this.type == Type.ButtonRed)
+                this.type = Type.ButtonRedPressed;
+
+            if (this.type == Type.ButtonBlue)
+                this.type = Type.ButtonBluePressed;
+
+            if (this.type == Type.ButtonYellow)
+                this.type = Type.ButtonYellowPressed;
+        }
+
+        public void RemoveColoredWallTopping()
+        {
+            if (this.type == Type.ColorWallTopRed || this.type == Type.ColorWallTopBlue || this.type == Type.ColorWallTopYellow)
+                this.type = Type.FloorDirtLight;
+        }
+
+        public void FlattenColoredWall()
+        {
+            if (this.type == Type.ColorWallRed)
+                this.type = Type.ColorWallRemainderRed;
+
+            if (this.type == Type.ColorWallBlue)
+                this.type = Type.ColorWallRemainderBlue;
+
+            if (this.type == Type.ColorWallYellow)
+                this.type = Type.ColorWallRemainderYellow;
+        }
+
+        static public bool IsAPlate(Type type)
+        {
+            return type >= Type.ButtonRed && type <= Type.ButtonBlue;
+        }
+
         /// <summary>
         /// Is this block type unpassable?
         /// </summary>

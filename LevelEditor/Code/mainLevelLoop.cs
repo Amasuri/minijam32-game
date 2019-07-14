@@ -155,7 +155,7 @@ namespace BPO.Minijam32.LevelEditor
         {
             TileData.Type oldType = this.tileInHand;
 
-            if (jumping > 0 && (int)oldType + 1 <= (int)TileData.Type.PassableWallRoofRight)
+            if (jumping > 0 && (int)oldType + 1 <= (int)TileData.Type.ColorWallRemainderBlue)
                 tileInHand = oldType + 1;
             else if (jumping < 0 && (int)oldType - 1 >= 0)
                 tileInHand = oldType - 1;

@@ -24,6 +24,7 @@ namespace BPO.Minijam32.Level
         public Point currentPlayerDefaultLocation { get; private set; }
         public List<EnemyAI> enemies { get; private set; }
         public Point TeleportPoint { get; private set; }
+        public bool RedPlatePressed { get; private set; }
 
         private List<Point> healDrops;
 
@@ -103,6 +104,28 @@ namespace BPO.Minijam32.Level
                 currentLevelId++;
                 this.ReInitializeLevelData(currentLevelId);
             }
+
+            //Update logic for colored plates
+            RedPlatePressed = false;
+            for (int x = 0; x < tileGrid.GetLength(0); x++)
+                for (int y = 0; y < tileGrid.GetLength(1); y++)
+                {
+                    if (tileGrid[x, y].type == TileData.Type.ButtonRed && new Point(x, y) == PlayerDataManager.tilePosition)
+                    {
+                        RedPlatePressed = true;
+                        tileGrid[x, y].PressPlate();
+                    }
+                }
+
+            for (int x = 0; x < tileGrid.GetLength(0); x++)
+                for (int y = 0; y < tileGrid.GetLength(1); y++)
+                {
+                    if (RedPlatePressed && tileGrid[x, y].type == TileData.Type.ColorWallRed)
+                    {
+                        tileGrid[x, y-1].RemoveColoredWallTopping();
+                        tileGrid[x, y].FlattenColoredWall();
+                    }
+                }
 
             //Bombs go boom
             var bombsDeleteLocations = new List<Point> { };
