@@ -105,6 +105,16 @@ namespace BPO.Minijam32.Level.Tile
             PassableWallRoofLeft = 60,
             PassableWallRoofMiddle = 61,
             PassableWallRoofRight = 62,
+
+            //63-65: Color-coded wall tops (passable)
+            ColorWallTopRed = 63,
+            ColorWallTopYellow = 64,
+            ColorWallTopBlue = 65,
+
+            //66-68: Wall remainders (passable)
+            ColorWallRemainderRed = 66,
+            ColorWallRemainderYellow = 67,
+            ColorWallRemainderBlue = 68,
         }
 
         public Type type { get; private set; }
@@ -141,11 +151,12 @@ namespace BPO.Minijam32.Level.Tile
         public static bool IsSolid(Type type)
         {
             return
-                (int)type >= (int)Type.BombOne && (int)type <= (int)Type.WallBricksTopHighCornerRight ||
+                ((int)type >= (int)Type.BombOne && (int)type <= (int)Type.WallBricksTopHighCornerRight) ||
                 IsDestructable(type) ||
                 IsWater(type) ||
                 type == Type.FloorDirtMediumPlain ||
-                type == Type.FloorDirtDark;
+                type == Type.FloorDirtDark ||
+                ((int)type >= (int)Type.ColorWallRed && (int)type <= (int)Type.ColorWallBlue);
         }
 
         /// <summary>
@@ -163,7 +174,10 @@ namespace BPO.Minijam32.Level.Tile
         public static bool IsUpperRoof(Type type)
         {
             return
-                ((int)type >= (int)Type.PassableWallRoofComplete && (int)type <= (int)Type.PassableWallRoofRight);
+                ((int)type >= (int)Type.PassableWallRoofComplete && (int)type <= (int)Type.PassableWallRoofRight) ||
+                type == Type.ColorWallTopRed ||
+                type == Type.ColorWallTopBlue ||
+                type == Type.ColorWallTopYellow;
         }
 
         /// <summary>

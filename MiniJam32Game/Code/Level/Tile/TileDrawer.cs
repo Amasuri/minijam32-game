@@ -93,6 +93,14 @@ namespace BPO.Minijam32.Level.Tile
                 { TileData.Type.PassableWallRoofLeft, new Vector2(TileData.TileSize.X * 1, TileData.TileSize.Y * 2) },
                 { TileData.Type.PassableWallRoofMiddle, new Vector2(TileData.TileSize.X * 2, TileData.TileSize.Y * 2) },
                 { TileData.Type.PassableWallRoofRight, new Vector2(TileData.TileSize.X * 3, TileData.TileSize.Y * 2) },
+
+                { TileData.Type.ColorWallTopRed, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 10) },
+                { TileData.Type.ColorWallTopYellow, new Vector2(TileData.TileSize.X * 1, TileData.TileSize.Y * 10) },
+                { TileData.Type.ColorWallTopBlue, new Vector2(TileData.TileSize.X * 2, TileData.TileSize.Y * 10) },
+
+                { TileData.Type.ColorWallRemainderRed, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 14) },
+                { TileData.Type.ColorWallRemainderYellow, new Vector2(TileData.TileSize.X * 1, TileData.TileSize.Y * 14) },
+                { TileData.Type.ColorWallRemainderBlue, new Vector2(TileData.TileSize.X * 2, TileData.TileSize.Y * 14) },
             };
         }
 
