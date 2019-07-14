@@ -26,7 +26,7 @@ namespace Amasuri.Reusable.Graphics
         public ScreenPool(Minijam32 game)
         {
             this.screenState = ScreenState.Playing;
-            this.backgroundDirtColor = new Color(57, 42, 28);
+            this.backgroundDirtColor = new Color(104, 76, 60);
         }
 
         /// <summary>
