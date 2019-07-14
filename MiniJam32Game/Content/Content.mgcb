@@ -193,6 +193,12 @@
 /processorParam:TextureFormat=Color
 /build:../../res/image/tile/heart.png;res/tile/heart.png
 
+#begin ../../res/sound/bat ded.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/bat ded.ogg;res/sound/bat ded.ogg
+
 #begin ../../res/sound/cwby1.ogg
 /importer:OggImporter
 /processor:SongProcessor
@@ -228,6 +234,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:../../res/sound/game over.ogg;res/sound/game over.ogg
+
+#begin ../../res/sound/helth.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/helth.ogg;res/sound/helth.ogg
 
 #begin ../../res/sound/new level.ogg
 /importer:OggImporter
