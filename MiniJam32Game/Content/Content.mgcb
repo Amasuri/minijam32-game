@@ -193,9 +193,57 @@
 /processorParam:TextureFormat=Color
 /build:../../res/image/tile/heart.png;res/tile/heart.png
 
+#begin ../../res/sound/cwby1.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/cwby1.ogg;res/music/cwby1.ogg
+
+#begin ../../res/sound/cwby2.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/cwby2.ogg;res/music/cwby2.ogg
+
+#begin ../../res/sound/cwby4.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/cwby4.ogg;res/music/cwby4.ogg
+
+#begin ../../res/sound/ded.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/ded.ogg;res/sound/ded.ogg
+
 #begin ../../res/sound/explosion0.ogg
 /importer:OggImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:../../res/sound/explosion0.ogg;res/sound/explosion0.ogg
+
+#begin ../../res/sound/game over.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/game over.ogg;res/sound/game over.ogg
+
+#begin ../../res/sound/new level.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/new level.ogg;res/sound/new level.ogg
+
+#begin ../../res/sound/playerhurt.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/playerhurt.ogg;res/sound/playerhurt.ogg
+
+#begin ../../res/sound/rocks.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../../res/sound/rocks.ogg;res/sound/rocks.ogg
 
