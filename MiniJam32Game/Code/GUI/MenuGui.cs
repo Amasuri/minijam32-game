@@ -72,10 +72,14 @@ namespace BPO.Minijam32.Code.GUI
             if (pressedButton > 1)
                 pressedButton = 1;
 
-            if (keys.IsKeyDown(Keys.Space) && oldKeys.IsKeyUp(Keys.Space))
+            if (keys.IsKeyDown(Keys.Space) && oldKeys.IsKeyUp(Keys.Space) && pressedButton == 0)
             {
                 game.screenPool.TriggerGameStart();
                 SoundPlayer.PlaySound(SoundPlayer.Type.MenuConfirm);
+            }
+            if (keys.IsKeyDown(Keys.Space) && oldKeys.IsKeyUp(Keys.Space) && pressedButton == 1)
+            {
+                game.Exit();
             }
         }
     }
