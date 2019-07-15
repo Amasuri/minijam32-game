@@ -75,5 +75,11 @@ namespace BPO.Minijam32.GraphicsBase
                 animation.Value.Draw(batch, SpriteEffects.None, Minijam32.DeltaDraw);
             }
         }
+
+        public static void ClearAnimations()
+        {
+            finiteFieldAnimations = new List<Animation> { };
+            heartAnimations = new Dictionary<Point, Animation> { };
+        }
     }
 }

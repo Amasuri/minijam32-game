@@ -325,6 +325,9 @@ namespace BPO.Minijam32.Level
 
             //Reset heal drops
             this.healDrops = new List<Point> { };
+
+            //Reset level animations data
+            Animator.ClearAnimations();
         }
 
         public void TryPlantBombAt(Point tilePosition)
