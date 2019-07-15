@@ -39,9 +39,9 @@ namespace BPO.Minijam32.GUI.Level
                 batch.Draw(youDied, Vector2.Zero, null, Color.White, 0.0f, Vector2.Zero, Minijam32.Scale, SpriteEffects.None, 0.0f);
         }
 
-        public void UpdateDeathScene(Minijam32 game, KeyboardState keys)
+        public void UpdateDeathScene(Minijam32 game, KeyboardState keys, KeyboardState oldKeys)
         {
-            if(keys.IsKeyDown(Keys.Space))
+            if(keys.IsKeyDown(Keys.Space) && oldKeys.IsKeyUp(Keys.Space))
             {
                 game.levelData.ResetToDefault();
                 game.screenPool.GoMenu();

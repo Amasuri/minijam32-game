@@ -129,7 +129,7 @@ namespace Amasuri.Reusable.Graphics
             }
             else if (screenState == ScreenState.DeadGameOver)
             {
-                newLevelDrawer.UpdateDeathScene(game, _key);
+                newLevelDrawer.UpdateDeathScene(game, _key, _oldKey);
             }
             else if (screenState == ScreenState.SwitchingLevel)
             {
@@ -139,6 +139,10 @@ namespace Amasuri.Reusable.Graphics
                     screenState = ScreenState.Playing;
                     game.musicPlayer.Unmute();
                 }
+            }
+            else if (screenState == ScreenState.FinishedGame)
+            {
+                this.finishedGameDrawer.Update(game, _key, _oldKey);
             }
 
             this._oldKey = this._key;
