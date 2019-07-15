@@ -29,7 +29,7 @@ namespace Amasuri.Reusable.Graphics
 
         private Color backgroundDirtColor;
 
-        private const float NewLevelDelay = 2000f;
+        private const float NewLevelDelay = 4000f;
         private float currentNewLevelDelayLeft;
         public bool IsHavingNewLevelOverlay => ( currentNewLevelDelayLeft >= 0f );
 
