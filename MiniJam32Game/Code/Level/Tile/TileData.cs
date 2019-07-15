@@ -117,6 +117,9 @@ namespace BPO.Minijam32.Level.Tile
             ColorWallRemainderYellow = 67,
             ColorWallRemainderBlue = 68,
 
+            //69: Temporal to-be-removed new Id
+            NewWallTopToBeRemoved = 99,
+
             //1000-1003: Character Death (can't place it)
             CharacterDeathDown = 1000,
             CharacterDeathRight = 1001,

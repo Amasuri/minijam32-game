@@ -102,6 +102,8 @@ namespace BPO.Minijam32.Level.Tile
                 { TileData.Type.ColorWallRemainderYellow, new Vector2(TileData.TileSize.X * 1, TileData.TileSize.Y * 14) },
                 { TileData.Type.ColorWallRemainderBlue, new Vector2(TileData.TileSize.X * 2, TileData.TileSize.Y * 14) },
 
+                { TileData.Type.NewWallTopToBeRemoved, new Vector2(TileData.TileSize.X * 15, TileData.TileSize.Y * 3) },
+
                 //Those are unreachable in editor
                 { TileData.Type.CharacterDeathDown, new Vector2(TileData.TileSize.X * 0, TileData.TileSize.Y * 15) },
                 { TileData.Type.CharacterDeathRight, new Vector2(TileData.TileSize.X * 1, TileData.TileSize.Y * 15) },
